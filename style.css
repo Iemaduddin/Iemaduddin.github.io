@@ -1,0 +1,141 @@
+/* index.html */
+body {
+  background-color: black;
+}
+.jumbotron {
+  padding-top: 12rem;
+  background-color: #0c5463f8;
+}
+
+.about,
+.projek {
+  background-color: black;
+  color: white;
+}
+
+#tittle_about {
+  padding-right: 5rem;
+  padding-left: 5rem;
+}
+
+#projects-gb1:hover {
+  color: white;
+  cursor: pointer;
+  transform: scale(1.03);
+  transition: all 0.5s ease;
+}
+#projects-gb2:hover {
+  color: white;
+  cursor: pointer;
+  transform: scale(1.03);
+  transition: all 0.5s ease;
+}
+#projects-gb3:hover {
+  color: white;
+  cursor: pointer;
+  transform: scale(1.03);
+  transition: all 0.5s ease;
+}
+#projects-gb4:hover {
+  color: white;
+  cursor: pointer;
+  transform: scale(1.03);
+  transition: all 0.5s ease;
+}
+
+.contact-tombol button {
+  font-weight: bold;
+  color: white;
+  font-size: 30px;
+  margin-top: 3rem;
+  margin-bottom: 10rem;
+  border-radius: 40px;
+}
+
+.contact-tombol button:hover {
+  background-color: #36b6cf;
+  color: white;
+  cursor: pointer;
+  transform: scale(1.03);
+  transition: all 0.5s ease;
+}
+
+.contact {
+  background-color: rgb(2, 55, 99);
+}
+
+.foot {
+  background-color: rgb(40, 46, 51);
+}
+
+#kartu-edu:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: all 0.5s ease;
+}
+#kartu-org:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: all 0.5s ease;
+}
+#kartu-music:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: all 0.5s ease;
+}
+
+#git:hover {
+  color: cadetblue;
+  cursor: pointer;
+  transform: scale(2);
+  transition: all 0.5s ease;
+}
+
+/* contact.html */
+.jumbotron-1 {
+  padding: 12rem 25rem 0.5rem 25rem;
+  background-color: #0c5463f8;
+}
+
+.cont-contact {
+  padding-top: 5rem;
+  padding-bottom: 3rem;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+}
+
+#foto:hover {
+  color: rgb(3, 201, 250);
+  cursor: pointer;
+  transform: scale(1.2);
+  transition: all 0.5s ease;
+}
+
+#email:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+  transition: all 0.5s ease;
+}
+#github:hover {
+  cursor: pointer;
+  transform: scale(1.5);
+  transition: all 0.5s ease;
+}
+#whatsapp:hover {
+  cursor: pointer;
+  transform: scale(1.5);
+  transition: all 0.5s ease;
+}
+#instagram:hover {
+  cursor: pointer;
+  transform: scale(1.5);
+  transition: all 0.5s ease;
+}
+
+.back_page button {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  margin-top: 3rem;
+  border-radius: 40px;
+}
