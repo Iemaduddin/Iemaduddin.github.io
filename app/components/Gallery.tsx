@@ -71,7 +71,7 @@ export const AlbumGallery = ({ images, onClose }: { images: GalleryImage[]; onCl
           </div>
 
           {/* Center Section - Toolbar */}
-          <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3 absolute left-1/2 -translate-x-1/2">
+          <div className="hidden md:flex items-center gap-1.5 sm:gap-2 md:gap-3 absolute left-1/2 -translate-x-1/2">
             <button
               onClick={(e) => {
                 e.stopPropagation();
@@ -169,7 +169,7 @@ export const AlbumGallery = ({ images, onClose }: { images: GalleryImage[]; onCl
           </div>
         </div>
         {/* KEYBOARD HINT */}
-        <div className="hidden sm:block text-center text-white/50 text-xs pb-3 sm:pb-4">← Prev | → Next | ESC Close</div>
+        <div className="hidden md:block text-center text-white/50 text-xs pb-3 sm:pb-4">← Prev | → Next | ESC Close</div>
 
         {/* MAIN IMAGE CONTAINER */}
         <div className="flex-1 flex items-center justify-center overflow-hidden relative bg-black px-2 sm:px-0" onClick={(e) => e.stopPropagation()}>
@@ -203,6 +203,95 @@ export const AlbumGallery = ({ images, onClose }: { images: GalleryImage[]; onCl
               </button>
             </>
           )}
+        </div>
+        <div className="flex md:hidden items-center gap-1.5 sm:gap-2 md:gap-3 mx-auto">
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              resetTransform();
+            }}
+            className="p-2 sm:p-2.5 md:p-3 bg-white/10 backdrop-blur-sm rounded-lg hover:bg-white/20 text-white transition group relative"
+            title="Reset"
+          >
+            <RotateCcw size={18} className="sm:w-5 sm:h-5 md:w-6 md:h-6" />
+            <span className="hidden md:block absolute bottom-full mb-2 px-2 py-1 bg-black/80 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition whitespace-nowrap">Reset</span>
+          </button>
+
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setZoom((z) => Math.max(0.5, z - 0.2));
+            }}
+            className="p-2 sm:p-2.5 md:p-3 bg-white/10 backdrop-blur-sm rounded-lg hover:bg-white/20 text-white transition group relative"
+            title="Zoom Out"
+          >
+            <ZoomOut size={18} className="sm:w-5 sm:h-5 md:w-6 md:h-6" />
+            <span className="hidden md:block absolute bottom-full mb-2 px-2 py-1 bg-black/80 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition whitespace-nowrap">Zoom Out</span>
+          </button>
+
+          <div className="text-white text-xs sm:text-sm opacity-70 px-2 sm:px-3 py-1.5 sm:py-2 bg-white/10 backdrop-blur-sm rounded-lg">{Math.round(zoom * 100)}%</div>
+
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setZoom((z) => z + 0.2);
+            }}
+            className="p-2 sm:p-2.5 md:p-3 bg-white/10 backdrop-blur-sm rounded-lg hover:bg-white/20 text-white transition group relative"
+            title="Zoom In"
+          >
+            <ZoomIn size={18} className="sm:w-5 sm:h-5 md:w-6 md:h-6" />
+            <span className="hidden md:block absolute bottom-full mb-2 px-2 py-1 bg-black/80 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition whitespace-nowrap">Zoom In</span>
+          </button>
+
+          <div className="w-px h-6 sm:h-8 bg-white/20"></div>
+
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setRotation((r) => r + 90);
+            }}
+            className="p-2 sm:p-2.5 md:p-3 bg-white/10 backdrop-blur-sm rounded-lg hover:bg-white/20 text-white transition group relative"
+            title="Rotate Right"
+          >
+            <RotateCw size={18} className="sm:w-5 sm:h-5 md:w-6 md:h-6" />
+            <span className="hidden md:block absolute bottom-full mb-2 px-2 py-1 bg-black/80 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition whitespace-nowrap">Rotate Right</span>
+          </button>
+
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setRotation((r) => r - 90);
+            }}
+            className="p-2 sm:p-2.5 md:p-3 bg-white/10 backdrop-blur-sm rounded-lg hover:bg-white/20 text-white transition group relative"
+            title="Rotate Left"
+          >
+            <RotateCcw size={18} className="sm:w-5 sm:h-5 md:w-6 md:h-6" />
+            <span className="hidden md:block absolute bottom-full mb-2 px-2 py-1 bg-black/80 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition whitespace-nowrap">Rotate Left</span>
+          </button>
+
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setFlipX(!flipX);
+            }}
+            className={`p-2 sm:p-2.5 md:p-3 backdrop-blur-sm rounded-lg transition group relative ${flipX ? "bg-white/20 text-white" : "bg-white/10 hover:bg-white/20 text-white"}`}
+            title="Flip Horizontal"
+          >
+            <FlipHorizontal size={18} className="sm:w-5 sm:h-5 md:w-6 md:h-6" />
+            <span className="hidden md:block absolute bottom-full mb-2 px-2 py-1 bg-black/80 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition whitespace-nowrap">Flip H</span>
+          </button>
+
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setFlipY(!flipY);
+            }}
+            className={`p-2 sm:p-2.5 md:p-3 backdrop-blur-sm rounded-lg transition group relative ${flipY ? "bg-white/20 text-white" : "bg-white/10 hover:bg-white/20 text-white"}`}
+            title="Flip Vertical"
+          >
+            <FlipVertical size={18} className="sm:w-5 sm:h-5 md:w-6 md:h-6" />
+            <span className="hidden md:block absolute bottom-full mb-2 px-2 py-1 bg-black/80 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition whitespace-nowrap">Flip V</span>
+          </button>
         </div>
         {/* Desc */}
         {images[index].description ? <p className="text-xs sm:text-sm md:text-base text-white text-center mt-3 sm:mt-5 p-4 sm:p-6 mx-auto">{images[index].description}</p> : <div className="mt-3 sm:mt-5 pb-4 sm:pb-6"></div>}

@@ -119,7 +119,7 @@ export const translations = {
       "Collaborated with warehouse operations teams to align system features with inventory management needs.",
     ],
     // Projects
-    "projects.title": "Proyek",
+    "projects.title": "Projects",
     "projects.project1.title": "Inventory Management System",
     "projects.project1.description": "Inventory Management System built to manage product data and track stock movement with real-time analytics and data visualization.",
     "projects.project1.features": [
