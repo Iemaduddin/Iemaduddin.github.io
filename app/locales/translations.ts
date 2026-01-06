@@ -164,32 +164,41 @@ export const translations = {
       "Excel export for reporting & documentation",
       "Faster tracking and monitoring of permit records",
     ],
-    "projects.project5.title": "Visualization Occupancy Material",
-    "projects.project5.description":
-      "A dynamic warehouse rack visualization website designed to enable staff to monitor stock conditions and rack composition remotely, reducing the need for physical inspection in storage areas. The rack layout can be configured dynamically by users (columns, rack levels, and structure) without redeveloping the system.",
+    "projects.project5.title": "E-Voting System",
+    "projects.project5.description": "A secure, modern, and easy-to-use web-based electronic election system for campus organizations (BEM, DPM, HMJ, UKM).",
     "projects.project5.features": [
+      "Multi-candidate & multi-organizer elections",
+      "Self-service election creation by organizers",
+      "Real-time election monitoring",
+      "Automatic & structured election results",
+      "Master Data for Departments, Study Programs, and Organizer Members (Student Organizations)",
+    ],
+    "projects.project6.title": "Visualization Occupancy Material",
+    "projects.project6.description":
+      "A dynamic warehouse rack visualization website designed to enable staff to monitor stock conditions and rack composition remotely, reducing the need for physical inspection in storage areas. The rack layout can be configured dynamically by users (columns, rack levels, and structure) without redeveloping the system.",
+    "projects.project6.features": [
       "Real-time warehouse rack visualization",
       "Fully dynamic rack structure configuration",
       "Stock and material position monitoring per rack slot",
       "Eliminates manual warehouse checking",
       "Improves operational efficiency",
     ],
-    "projects.project6.title": "Organizational Letter Management System",
-    "projects.project6.description": "A web-based solution designed to manage incoming and outgoing letters within an organization, featuring automated file storage and visual data summaries.",
-    "projects.project6.features": [
+    "projects.project7.title": "Organizational Letter Management System",
+    "projects.project7.description": "A web-based solution designed to manage incoming and outgoing letters within an organization, featuring automated file storage and visual data summaries.",
+    "projects.project7.features": [
       "Manage incoming and outgoing correspondence",
       "File upload with automated storage to Google Drive & Local Storage",
       "Summary view for document tracking and lookup",
       "Dashboard with data visualization using charts",
       "Organized and traceable document management",
     ],
-    "projects.project7.title": "Vehicle License Management",
-    "projects.project7.description":
+    "projects.project8.title": "Vehicle License Management",
+    "projects.project8.description":
       "A web application designed to generate vehicle license cards similar to driving permits. Users simply upload an Excel file, and the system automatically produces ready-to-download and printable license cards.",
-    "projects.project7.features": ["Excel template data import", "Automated license card generation", "One-click download for printing", "Structured database storage", "Significantly reduces manual processing time & human errors"],
-    "projects.project8.title": "Content Management System (News Portal)",
-    "projects.project8.description": "A self-developed project designed to build a dynamic news portal with CMS functionality, featuring an admin dashboard for content management and a public landing page for news display.",
-    "projects.project8.features": [
+    "projects.project8.features": ["Excel template data import", "Automated license card generation", "One-click download for printing", "Structured database storage", "Significantly reduces manual processing time & human errors"],
+    "projects.project9.title": "Content Management System (News Portal)",
+    "projects.project9.description": "A self-developed project designed to build a dynamic news portal with CMS functionality, featuring an admin dashboard for content management and a public landing page for news display.",
+    "projects.project9.features": [
       "CRUD modules: Users, Post Categories, News Posts",
       "Admin dashboard for content & user management",
       "Public landing page for news listing & detailed view",
@@ -385,38 +394,47 @@ export const translations = {
       "Visualisasi data menggunakan berbagai chart",
       "Export data kembali ke Excel",
     ],
-    "projects.project5.title": "Visualization Occupancy Material",
-    "projects.project5.description":
-      "Website visualisasi rak gudang yang memungkinkan karyawan untuk memonitor kondisi stok dan komposisi rak secara real-time tanpa perlu turun ke lapangan. Sistem ini dibangun secara dinamis sehingga struktur rak (jumlah kolom, jumlah rak, dan susunannya) dapat diatur sesuai kebutuhan langsung dari website tanpa perlu melakukan pengembangan ulang.",
+    "projects.project5.title": "Sistem Pemilihan Elektronik (E-Voting)",
+    "projects.project5.description": "Sistem Pemilihan Elektronik berbasis web untuk organisasi kampus (BEM, DPM, HMJ, UKM) yang aman, modern, dan mudah digunakan.",
     "projects.project5.features": [
+      "Pemilihan multi kandidat & multi penyelenggara",
+      "Self-service pembuatan pemilihan oleh penyelenggara",
+      "Monitoring pemilihan secara real-time",
+      "Hasil pemilihan otomatis & terstruktur",
+      "Data Master Jurusan, Prodi, dan Anggota Penyelennggara (Organisasi Mahasiswa)",
+    ],
+    "projects.project6.title": "Visualization Occupancy Material",
+    "projects.project6.description":
+      "Website visualisasi rak gudang yang memungkinkan karyawan untuk memonitor kondisi stok dan komposisi rak secara real-time tanpa perlu turun ke lapangan. Sistem ini dibangun secara dinamis sehingga struktur rak (jumlah kolom, jumlah rak, dan susunannya) dapat diatur sesuai kebutuhan langsung dari website tanpa perlu melakukan pengembangan ulang.",
+    "projects.project6.features": [
       "Visualisasi rak barang secara real-time",
       "Struktur rak dinamis & dapat dikonfigurasi user",
       "Monitoring stok & posisi barang per slot rak",
       "Meminimalkan pengecekan manual di lapangan",
       "Meningkatkan efisiensi proses operasional gudang",
     ],
-    "projects.project6.title": "Sistem Persuratan Organisasi",
-    "projects.project6.description": "Sistem web untuk mendukung pengelolaan surat masuk dan keluar dalam organisasi, dilengkapi fitur penyimpanan file otomatis dan tampilan summary berbasis data visual.",
-    "projects.project6.features": [
+    "projects.project7.title": "Sistem Persuratan Organisasi",
+    "projects.project7.description": "Sistem web untuk mendukung pengelolaan surat masuk dan keluar dalam organisasi, dilengkapi fitur penyimpanan file otomatis dan tampilan summary berbasis data visual.",
+    "projects.project7.features": [
       "Manajemen surat masuk & surat keluar",
       "Upload file surat dengan penyimpanan otomatis ke Google Drive & Local Storage",
       "Daftar summary surat serta pencarian data yang mudah",
       "Dashboard & visualisasi data surat menggunakan chart",
       "Penyimpanan dokumen yang rapi, terstruktur, dan mudah dilacak",
     ],
-    "projects.project7.title": "Vehicle License Management",
-    "projects.project7.description":
+    "projects.project8.title": "Vehicle License Management",
+    "projects.project8.description":
       "Sistem berbasis web untuk mengelola dan menghasilkan kartu perizinan kendaraan (mirip dengan Surat Izin Mengemudi). Pengguna cukup melakukan upload file Excel, dan sistem akan meng-generate kartu secara otomatis, siap untuk diunduh dan dicetak tanpa proses manual tambahan.",
-    "projects.project7.features": [
+    "projects.project8.features": [
       "Import data melalui upload Excel template",
       "Generate kartu izin secara otomatis",
       "Download kartu untuk kebutuhan cetak",
       "Penyimpanan data terstruktur di database",
       "Mempercepat proses pembuatan kartu dan mengurangi human error",
     ],
-    "projects.project8.title": "Content Management System (Portal Berita)",
-    "projects.project8.description": "Proyek mandiri untuk membangun portal berita dengan sistem CMS yang memungkinkan pengelolaan konten secara dinamis melalui dashboard admin, serta tampilan landing page berita untuk publik.",
-    "projects.project8.features": [
+    "projects.project9.title": "Content Management System (Portal Berita)",
+    "projects.project9.description": "Proyek mandiri untuk membangun portal berita dengan sistem CMS yang memungkinkan pengelolaan konten secara dinamis melalui dashboard admin, serta tampilan landing page berita untuk publik.",
+    "projects.project9.features": [
       "CRUD master data: User, Kategori Post, Post Berita",
       "Dashboard admin untuk manajemen konten dan pengguna",
       "Landing page berita (listing, detail, dan rekomendasi artikel serupa berdasarkan kategori)",

@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Code, ChevronLeft, ChevronRight, X, ImageIcon, CheckCircle2 } from "lucide-react";
+import { Code, ChevronLeft, ChevronRight, X, ImageIcon, CheckCircle2, Github } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
@@ -92,23 +92,37 @@ export default function Projects() {
           {t(`projects.project${index + 1}.title`)}
         </h3>
         <div className="mb-5 sm:mb-6 flex-1">
-          <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base leading-relaxed line-clamp-3 mb-2" suppressHydrationWarning>
+          <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base leading-relaxed line-clamp-3 mb-3" suppressHydrationWarning>
             {t(`projects.project${index + 1}.description`)}
           </p>
-          <button
-            onClick={() => {
-              setSelectedProjectIndex(index);
-              setShowDetailDialog(true);
-            }}
-            className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 text-sm font-medium hover:underline transition-colors"
-            suppressHydrationWarning
-          >
-            {t("projects.readMore")} →
-          </button>
+          <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
+            <button
+              onClick={() => {
+                setSelectedProjectIndex(index);
+                setShowDetailDialog(true);
+              }}
+              className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-lg text-xs sm:text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-600 *:transition-colors"
+              suppressHydrationWarning
+            >
+              {t("projects.readMore")} →
+            </button>
+            {project.repository && (
+              <a
+                href={project.repository}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-black dark:bg-gray-700 text-white dark:text-gray-200 rounded-lg text-xs sm:text-sm font-medium hover:bg-gray-800 dark:hover:bg-gray-600 transition-colors"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <Github size={16} />
+                <span>Repository</span>
+              </a>
+            )}
+          </div>
         </div>
         <div className="flex flex-wrap gap-2 sm:gap-3">
           {project.technologies.map((tech) => (
-            <span key={tech} className="px-3 py-1.5 sm:px-4 sm:py-2 bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 rounded-lg text-xs sm:text-sm font-medium hover:bg-blue-200 dark:hover:bg-blue-900/60 transition-colors">
+            <span key={tech} className="px-3 py-1.5 sm:px-4 sm:py-2 bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium hover:bg-blue-200 dark:hover:bg-blue-900/60 transition-colors">
               {tech}
             </span>
           ))}
@@ -340,7 +354,7 @@ export default function Projects() {
                   <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Tech Stack</h3>
                   <div className="flex flex-wrap gap-2 sm:gap-3">
                     {projectsData[selectedProjectIndex].technologies.map((tech) => (
-                      <span key={tech} className="px-4 py-2 bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 rounded-lg text-sm font-medium">
+                      <span key={tech} className="px-4 py-2 bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium">
                         {tech}
                       </span>
                     ))}

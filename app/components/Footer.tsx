@@ -21,30 +21,37 @@ export default function Footer() {
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           <div>
             <h3 className="text-xl font-bold text-white mb-4">Portfolio</h3>
-            <p className="text-gray-400">{t("footer.build")}</p>
+            <p className="text-gray-400" suppressHydrationWarning>
+              {t("footer.build")}
+            </p>
           </div>
           <div>
-            <h4 className="text-lg font-semibold text-white mb-4">{t("footer.quickLinks")}</h4>
+            <h4 className="text-lg font-semibold text-white mb-4" suppressHydrationWarning>
+              {t("footer.quickLinks")}
+            </h4>
             <ul className="space-y-2">
               <li>
-                <a href="#about" className="text-gray-400 hover:text-white transition-colors">
+                <a href="#about" className="text-gray-400 hover:text-white transition-colors" suppressHydrationWarning>
                   {t("footer.quickLinkItem1")}
                 </a>
               </li>
               <li>
-                <a href="#projects" className="text-gray-400 hover:text-white transition-colors">
+                <a href="#projects" className="text-gray-400 hover:text-white transition-colors" suppressHydrationWarning>
                   {t("footer.quickLinkItem2")}
                 </a>
               </li>
               <li>
-                <a href="#contact" className="text-gray-400 hover:text-white transition-colors">
+                <a href="#contact" className="text-gray-400 hover:text-white transition-colors" suppressHydrationWarning>
                   {t("footer.quickLinkItem3")}
                 </a>
               </li>
             </ul>
           </div>
           <div>
-            <h4 className="text-lg font-semibold text-white mb-4"> {t("footer.connect")}</h4>
+            <h4 className="text-lg font-semibold text-white mb-4" suppressHydrationWarning>
+              {" "}
+              {t("footer.connect")}
+            </h4>
             <div className="flex gap-4">
               {socialLinks.map((social, index) => (
                 <motion.a

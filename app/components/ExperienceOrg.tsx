@@ -63,7 +63,7 @@ export default function ExperienceOrg() {
         </p>
       </motion.div>
 
-      <div className="space-y-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {orgData.map((exp, index) => (
           <motion.div
             key={index}
