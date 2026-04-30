@@ -120,9 +120,24 @@ export const translations = {
     ],
     // Projects
     "projects.title": "Projects",
-    "projects.project1.title": "Inventory Management System",
-    "projects.project1.description": "Inventory Management System built to manage product data and track stock movement with real-time analytics and data visualization.",
+    "projects.project1.title": "Cooperative System  ",
+    "projects.project1.description": "The Cooperative System is an information system designed to manage and record cooperative financial transactions in an integrated manner, including member savings, loans with installments, and deposits. It also provides member management, cash flow tracking, and a dashboard for monitoring and reporting. Built using Laravel, Inertia.js, and React.js, the system aims to improve efficiency, accuracy, and transparency in cooperative operations.",
     "projects.project1.features": [
+      "Manage member data (create, update, deactivate, exit history).",
+      "Handle principal, mandatory, and voluntary savings (deposit & withdrawal).",
+      "Loan application, interest calculation, installment scheduling, and payment tracking.",
+      "Manage fixed-term deposits, profit sharing, and withdrawals.",
+      "Track cash inflows and outflows from various transaction sources.",
+      "Financial summaries with charts, statistics, and transaction reports.",
+      "Filter data by period (monthly/yearly) and export to Excel.",
+      "Access control for different user roles (admin, super admin).",
+      "Maintain logs for activities and transactions to ensure transparency.",
+      "Displays a list of members who are required to make payments in the current month, including those with overdue payments.",
+      "Provides information on members whose deposits are due in the current month, along with the total funds that need to be prepared for disbursement.",
+    ],
+    "projects.project2.title": "Inventory Management System",
+    "projects.project2.description": "Inventory Management System built to manage product data and track stock movement with real-time analytics and data visualization.",
+    "projects.project2.features": [
       "Product & Master Data Management (CRUD)",
       "Inbound & Outbound Stock Transactions",
       "Purchase Order (PO) workflow",
@@ -131,9 +146,9 @@ export const translations = {
       "Authentication & Role-based Authorization",
       "Responsive Web UI",
     ],
-    "projects.project2.title": "Simeva - Event & Asset Management Information System",
-    "projects.project2.description": "Simeva is a web-based system designed to support integrated management of events and asset bookings within educational institutions, featuring a multi-role workflow and end-to-end process automation.",
-    "projects.project2.features": [
+    "projects.project3.title": "Simeva - Event & Asset Management Information System",
+    "projects.project3.description": "Simeva is a web-based system designed to support integrated management of events and asset bookings within educational institutions, featuring a multi-role workflow and end-to-end process automation.",
+    "projects.project3.features": [
       "Event Management: Event CRUD, participant & committee management, attendance tracking, internal calendar, Excel export, automated letter & invitation generation, participant e-tickets.",
       "Asset Management: Asset CRUD, classification (public facilities & department assets), public asset listing.",
       "Asset Booking: Daily/yearly booking, real-time status updates, booking history, invoice for external tenants.",
@@ -141,10 +156,10 @@ export const translations = {
       "Role-Based Access (7 roles): Super Admin, Organizer, UPT PU, Kaur RT, Department Admin, Participant, Tenant.",
       "Real-time Dashboard personalized per user role.",
     ],
-    "projects.project3.title": "WhatsApp Data Forensic Web Platform",
-    "projects.project3.description":
+    "projects.project4.title": "WhatsApp Data Forensic Web Platform",
+    "projects.project4.description":
       "A web-based digital forensic platform designed to extract and analyze WhatsApp data (Android), supporting both WhatsApp Regular and WhatsApp Business. The system automatically converts, processes, and visualizes communication data for investigative and analytical purposes.",
-    "projects.project3.features": [
+    "projects.project4.features": [
       "WhatsApp data extraction from Android devices",
       "Supports both Regular & Business account types",
       "Automatic database conversion SQLite → MySQL",
@@ -153,9 +168,9 @@ export const translations = {
       "Search, filter, and analytics for messages, contacts, media, and call logs",
       "Fully integrated backend API system",
     ],
-    "projects.project4.title": "Control Airshipment Permission",
-    "projects.project4.description": "A web-based tool for generating automated summaries of airshipment licensing documents sourced from Excel uploads, converting raw spreadsheet data into structured analytics and visual dashboards.",
-    "projects.project4.features": [
+    "projects.project5.title": "Control Airshipment Permission",
+    "projects.project5.description": "A web-based tool for generating automated summaries of airshipment licensing documents sourced from Excel uploads, converting raw spreadsheet data into structured analytics and visual dashboards.",
+    "projects.project5.features": [
       "Excel upload & import using predefined template",
       "Automated data processing & database storage",
       "Summary dashboard with real-time statistics",
@@ -164,41 +179,41 @@ export const translations = {
       "Excel export for reporting & documentation",
       "Faster tracking and monitoring of permit records",
     ],
-    "projects.project5.title": "E-Voting System",
-    "projects.project5.description": "A secure, modern, and easy-to-use web-based electronic election system for campus organizations (BEM, DPM, HMJ, UKM).",
-    "projects.project5.features": [
+    "projects.project6.title": "E-Voting System",
+    "projects.project6.description": "A secure, modern, and easy-to-use web-based electronic election system for campus organizations (BEM, DPM, HMJ, UKM).",
+    "projects.project6.features": [
       "Multi-candidate & multi-organizer elections",
       "Self-service election creation by organizers",
       "Real-time election monitoring",
       "Automatic & structured election results",
       "Master Data for Departments, Study Programs, and Organizer Members (Student Organizations)",
     ],
-    "projects.project6.title": "Visualization Occupancy Material",
-    "projects.project6.description":
+    "projects.project7.title": "Visualization Occupancy Material",
+    "projects.project7.description":
       "A dynamic warehouse rack visualization website designed to enable staff to monitor stock conditions and rack composition remotely, reducing the need for physical inspection in storage areas. The rack layout can be configured dynamically by users (columns, rack levels, and structure) without redeveloping the system.",
-    "projects.project6.features": [
+    "projects.project7.features": [
       "Real-time warehouse rack visualization",
       "Fully dynamic rack structure configuration",
       "Stock and material position monitoring per rack slot",
       "Eliminates manual warehouse checking",
       "Improves operational efficiency",
     ],
-    "projects.project7.title": "Organizational Letter Management System",
-    "projects.project7.description": "A web-based solution designed to manage incoming and outgoing letters within an organization, featuring automated file storage and visual data summaries.",
-    "projects.project7.features": [
+    "projects.project8.title": "Organizational Letter Management System",
+    "projects.project8.description": "A web-based solution designed to manage incoming and outgoing letters within an organization, featuring automated file storage and visual data summaries.",
+    "projects.project8.features": [
       "Manage incoming and outgoing correspondence",
       "File upload with automated storage to Google Drive & Local Storage",
       "Summary view for document tracking and lookup",
       "Dashboard with data visualization using charts",
       "Organized and traceable document management",
     ],
-    "projects.project8.title": "Vehicle License Management",
-    "projects.project8.description":
+    "projects.project9.title": "Vehicle License Management",
+    "projects.project9.description":
       "A web application designed to generate vehicle license cards similar to driving permits. Users simply upload an Excel file, and the system automatically produces ready-to-download and printable license cards.",
-    "projects.project8.features": ["Excel template data import", "Automated license card generation", "One-click download for printing", "Structured database storage", "Significantly reduces manual processing time & human errors"],
-    "projects.project9.title": "Content Management System (News Portal)",
-    "projects.project9.description": "A self-developed project designed to build a dynamic news portal with CMS functionality, featuring an admin dashboard for content management and a public landing page for news display.",
-    "projects.project9.features": [
+    "projects.project9.features": ["Excel template data import", "Automated license card generation", "One-click download for printing", "Structured database storage", "Significantly reduces manual processing time & human errors"],
+    "projects.project10.title": "Content Management System (News Portal)",
+    "projects.project10.description": "A self-developed project designed to build a dynamic news portal with CMS functionality, featuring an admin dashboard for content management and a public landing page for news display.",
+    "projects.project10.features": [
       "CRUD modules: Users, Post Categories, News Posts",
       "Admin dashboard for content & user management",
       "Public landing page for news listing & detailed view",
@@ -350,9 +365,24 @@ export const translations = {
 
     // Projects
     "projects.title": "Proyek",
-    "projects.project1.title": "Sistem Manajemen Inventaris",
-    "projects.project1.description": "Sistem manajemen inventaris untuk pengelolaan produk dan pencatatan transaksi keluar-masuk barang dengan visualisasi data real-time.",
+    "projects.project1.title": "Sistem Koperasi",
+    "projects.project1.description": "Sistem Koperasi adalah sistem informasi yang digunakan untuk mengelola dan mencatat transaksi keuangan koperasi secara terintegrasi, meliputi simpanan anggota, pinjaman beserta angsuran, dan deposito. Sistem ini juga menyediakan pengelolaan data anggota, pencatatan arus kas, serta dashboard untuk monitoring dan pelaporan keuangan. Dikembangkan menggunakan Laravel, Inertia.js, dan React.js, sistem ini bertujuan meningkatkan efisiensi, akurasi, dan transparansi dalam operasional koperasi.",
     "projects.project1.features": [
+      "Pengelolaan data anggota (tambah, ubah, nonaktif, riwayat keluar).",
+      "Pencatatan simpanan pokok, wajib, dan sukarela (setor & tarik).",
+      "Pengajuan pinjaman, perhitungan bunga, jadwal angsuran, dan monitoring pembayaran.",
+      "Pengelolaan simpanan berjangka, perhitungan bagi hasil, dan pencairan dana.",
+      "Pencatatan arus kas masuk dan keluar dari berbagai sumber transaksi.",
+      "Ringkasan data keuangan dalam bentuk grafik, statistik, dan rekap transaksi.",
+      "Penyaringan data berdasarkan periode (bulan/tahun) dan export ke Excel.",
+      "Pengaturan hak akses (admin, super admin).",
+      "Pencatatan histori aktivitas dan transaksi untuk transparansi.",
+      "Menampilkan daftar anggota yang wajib melakukan pembayaran pada bulan berjalan, termasuk anggota yang terlambat melakukan pembayaran.",
+      "Menyediakan informasi anggota yang memiliki deposito jatuh tempo pada bulan berjalan, beserta total dana yang perlu disiapkan untuk pencairan."
+    ],
+    "projects.project2.title": "Sistem Manajemen Inventaris",
+    "projects.project2.description": "Sistem manajemen inventaris untuk pengelolaan produk dan pencatatan transaksi keluar-masuk barang dengan visualisasi data real-time.",
+    "projects.project2.features": [
       "Manajemen Produk & Master Data (CRUD)",
       "Pencatatan transaksi stok (Incoming & Outgoing)",
       "Proses Purchase Order (PO)",
@@ -361,10 +391,10 @@ export const translations = {
       "Authentication & Role Authorization",
       "Responsive UI",
     ],
-    "projects.project2.title": "Simeva — Sistem Informasi Manajemen Event dan Aset",
-    "projects.project2.description":
+    "projects.project3.title": "Simeva — Sistem Informasi Manajemen Event dan Aset",
+    "projects.project3.description":
       "Simeva adalah aplikasi web untuk mengelola event dan peminjaman aset secara terintegrasi di lingkungan institusi/ kampus, dengan sistem multi‐role dan alur operasional lengkap dari perencanaan event hingga pelaporan",
-    "projects.project2.features": [
+    "projects.project3.features": [
       "Event Management: CRUD event, manajemen peserta & panitia, presensi, internal calendar, export ke Excel, otomatisasi surat & undangan, dan e-ticket peserta.",
       "Asset Management: CRUD aset, klasifikasi aset (fasilitas umum & jurusan), publikasi aset di beranda.",
       "Asset Booking: Booking aset harian/tahunan, status real-time (pending/approved/rejected/cancelled), riwayat peminjaman, invoice untuk tenant.",
@@ -372,10 +402,10 @@ export const translations = {
       "Role-Based Access Control (7 roles): Super Admin, Organizer, UPT PU, Kaur RT, Admin Jurusan, Participant, Tenant.",
       "Dashboard Real-time untuk setiap jenis pengguna.",
     ],
-    "projects.project3.title": "Website Data Forensic WhatsApp",
-    "projects.project3.description":
+    "projects.project4.title": "Website Data Forensic WhatsApp",
+    "projects.project4.description":
       "Platform website untuk analisis dan penyaringan data forensik WhatsApp (Android), mendukung WhatsApp Regular dan WhatsApp Business. Sistem ini melakukan ekstraksi, konversi, dan visualisasi data percakapan serta metadata secara otomatis untuk keperluan investigasi dan analisis digital.",
-    "projects.project3.features": [
+    "projects.project4.features": [
       "Ekstraksi data WhatsApp dari perangkat Android",
       "Mendukung dua tipe akun: WhatsApp Regular & Business",
       "Konversi otomatis database WhatsApp SQLite → MySQL",
@@ -384,9 +414,9 @@ export const translations = {
       "Visualisasi data dan pencarian berdasarkan kontak, pesan, file media, dan log panggilan",
       "Sistem backend & API terintegrasi",
     ],
-    "projects.project4.title": "Control Airshipment Permission",
-    "projects.project4.description": "Sistem web untuk pengelolaan dan ringkasan dokumen perizinan pengiriman udara (airshipment), berbasis file Excel yang diproses otomatis menjadi data terstruktur dan visual analitik.",
-    "projects.project4.features": [
+    "projects.project5.title": "Control Airshipment Permission",
+    "projects.project5.description": "Sistem web untuk pengelolaan dan ringkasan dokumen perizinan pengiriman udara (airshipment), berbasis file Excel yang diproses otomatis menjadi data terstruktur dan visual analitik.",
+    "projects.project5.features": [
       "Upload & import file Excel berdasarkan template standar",
       "Pemrosesan & penyimpanan data otomatis ke database",
       "Dashboard summary dengan data aktual & statistik",
@@ -394,47 +424,47 @@ export const translations = {
       "Visualisasi data menggunakan berbagai chart",
       "Export data kembali ke Excel",
     ],
-    "projects.project5.title": "Sistem Pemilihan Elektronik (E-Voting)",
-    "projects.project5.description": "Sistem Pemilihan Elektronik berbasis web untuk organisasi kampus (BEM, DPM, HMJ, UKM) yang aman, modern, dan mudah digunakan.",
-    "projects.project5.features": [
+    "projects.project6.title": "Sistem Pemilihan Elektronik (E-Voting)",
+    "projects.project6.description": "Sistem Pemilihan Elektronik berbasis web untuk organisasi kampus (BEM, DPM, HMJ, UKM) yang aman, modern, dan mudah digunakan.",
+    "projects.project6.features": [
       "Pemilihan multi kandidat & multi penyelenggara",
       "Self-service pembuatan pemilihan oleh penyelenggara",
       "Monitoring pemilihan secara real-time",
       "Hasil pemilihan otomatis & terstruktur",
       "Data Master Jurusan, Prodi, dan Anggota Penyelennggara (Organisasi Mahasiswa)",
     ],
-    "projects.project6.title": "Visualization Occupancy Material",
-    "projects.project6.description":
+    "projects.project7.title": "Visualization Occupancy Material",
+    "projects.project7.description":
       "Website visualisasi rak gudang yang memungkinkan karyawan untuk memonitor kondisi stok dan komposisi rak secara real-time tanpa perlu turun ke lapangan. Sistem ini dibangun secara dinamis sehingga struktur rak (jumlah kolom, jumlah rak, dan susunannya) dapat diatur sesuai kebutuhan langsung dari website tanpa perlu melakukan pengembangan ulang.",
-    "projects.project6.features": [
+    "projects.project7.features": [
       "Visualisasi rak barang secara real-time",
       "Struktur rak dinamis & dapat dikonfigurasi user",
       "Monitoring stok & posisi barang per slot rak",
       "Meminimalkan pengecekan manual di lapangan",
       "Meningkatkan efisiensi proses operasional gudang",
     ],
-    "projects.project7.title": "Sistem Persuratan Organisasi",
-    "projects.project7.description": "Sistem web untuk mendukung pengelolaan surat masuk dan keluar dalam organisasi, dilengkapi fitur penyimpanan file otomatis dan tampilan summary berbasis data visual.",
-    "projects.project7.features": [
+    "projects.project8.title": "Sistem Persuratan Organisasi",
+    "projects.project8.description": "Sistem web untuk mendukung pengelolaan surat masuk dan keluar dalam organisasi, dilengkapi fitur penyimpanan file otomatis dan tampilan summary berbasis data visual.",
+    "projects.project8.features": [
       "Manajemen surat masuk & surat keluar",
       "Upload file surat dengan penyimpanan otomatis ke Google Drive & Local Storage",
       "Daftar summary surat serta pencarian data yang mudah",
       "Dashboard & visualisasi data surat menggunakan chart",
       "Penyimpanan dokumen yang rapi, terstruktur, dan mudah dilacak",
     ],
-    "projects.project8.title": "Vehicle License Management",
-    "projects.project8.description":
+    "projects.project9.title": "Vehicle License Management",
+    "projects.project9.description":
       "Sistem berbasis web untuk mengelola dan menghasilkan kartu perizinan kendaraan (mirip dengan Surat Izin Mengemudi). Pengguna cukup melakukan upload file Excel, dan sistem akan meng-generate kartu secara otomatis, siap untuk diunduh dan dicetak tanpa proses manual tambahan.",
-    "projects.project8.features": [
+    "projects.project9.features": [
       "Import data melalui upload Excel template",
       "Generate kartu izin secara otomatis",
       "Download kartu untuk kebutuhan cetak",
       "Penyimpanan data terstruktur di database",
       "Mempercepat proses pembuatan kartu dan mengurangi human error",
     ],
-    "projects.project9.title": "Content Management System (Portal Berita)",
-    "projects.project9.description": "Proyek mandiri untuk membangun portal berita dengan sistem CMS yang memungkinkan pengelolaan konten secara dinamis melalui dashboard admin, serta tampilan landing page berita untuk publik.",
-    "projects.project9.features": [
+    "projects.project10.title": "Content Management System (Portal Berita)",
+    "projects.project10.description": "Proyek mandiri untuk membangun portal berita dengan sistem CMS yang memungkinkan pengelolaan konten secara dinamis melalui dashboard admin, serta tampilan landing page berita untuk publik.",
+    "projects.project10.features": [
       "CRUD master data: User, Kategori Post, Post Berita",
       "Dashboard admin untuk manajemen konten dan pengguna",
       "Landing page berita (listing, detail, dan rekomendasi artikel serupa berdasarkan kategori)",

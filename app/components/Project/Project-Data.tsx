@@ -12,6 +12,84 @@ export interface Project {
 
 export const projectsData: Project[] = [
   {
+    title: "Cooperative System",
+    description: "",
+    technologies: ["React Js", "Inertia Js", "Laravel", "MySQL", "TypeScript", "Tailwind CSS", "Nivo Charts"],
+    repository: "https://github.com/Iemaduddin/sistem-koperasi",
+    images: [
+      {
+        title: "Dashboard",
+        description: "",
+        src: "/documentation/sistem-koperasi/dashboard-koperasi.png",
+      },
+      {
+        title: "Form Simpanan",
+        description: "",
+        src: "/documentation/sistem-koperasi/simpanan-koperasi-1.png",
+      },
+      {
+        title: "Daftar Simpanan",
+        description: "",
+        src: "/documentation/sistem-koperasi/simpanan-koperasi-2.png",
+      },
+      {
+        title: "Detail Transaksi Simpanan Anggota",
+        description: "",
+        src: "/documentation/sistem-koperasi/simpanan-koperasi-3.png",
+      },
+      {
+        title: "Form & Daftar Pinjaman",
+        description: "",
+        src: "/documentation/sistem-koperasi/pinjaman-koperasi-1.png",
+      },
+      {
+        title: "Detail Angsuran Pinjaman Anggota",
+        description: "",
+        src: "/documentation/sistem-koperasi/pinjaman-koperasi-2.png",
+      },
+      {
+        title: "Form & Daftar Simpanan Deposito",
+        description: "",
+        src: "/documentation/sistem-koperasi/deposito-koperasi-1.png",
+      },
+      {
+        title: "Detail Transaksi Simpanan Deposito",
+        description: "",
+        src: "/documentation/sistem-koperasi/deposito-koperasi-1.png",
+      },
+      {
+        title: "Reminder Bagi Hasil Simpanan Deposito",
+        description: "",
+        src: "/documentation/sistem-koperasi/reminder-bagi-hasil-koperasi.png",
+      },
+      {
+        title: "Riwayat Audit Sistem Koperasi",
+        description: "",
+        src: "/documentation/sistem-koperasi/riwayat-audit-koperasi.png",
+      },
+      {
+        title: "Rekapan Anggota Koperasi",
+        description: "",
+        src: "/documentation/sistem-koperasi/rekapan-anggota-koperasi.png",
+      },
+      {
+        title: "Riwayat Transaksi Koperasi",
+        description: "",
+        src: "/documentation/sistem-koperasi/riwayat-transaksi-koperasi.png",
+      },
+      {
+        title: "Notifikasi Koperasi",
+        description: "",
+        src: "/documentation/sistem-koperasi/notifikasi-koperasi.png",
+      },
+      {
+        title: "Portal Anggota Koperasi (Tanpa Login)",
+        description: "",
+        src: "/documentation/sistem-koperasi/portal-anggota-koperasi.png",
+      },
+    ],
+  },
+  {
     title: "Inventory Management System",
     description: "",
     technologies: ["React Js", "Laravel", "MySQL", "TypeScript", "Tailwind CSS", "Apexchart.Js"],
