@@ -42,12 +42,6 @@ export default function Contact() {
       href: "mailto:iemaduddin17@gmail.com",
     },
     {
-      icon: Phone,
-      label: t("contact.phone"),
-      value: "+62 823-3131-1947",
-      href: "https://wa.me/6282331311947",
-    },
-    {
       icon: MapPin,
       label: t("contact.location"),
       value: "Kab. Bangkalan, Jawa Timur",
@@ -56,9 +50,10 @@ export default function Contact() {
   ];
 
   const screenshots = [
-    { title: "Full Stack Web Dev", description: "Magang PT. Surabaya Autocomp Indonesia", src: "/documentation/sai.jpeg" },
-    { title: "Pimpinan Organisasi Kemahasiswaan Intra", description: "Pelantikan Pimpinan OKI", src: "/documentation/pelantikan-pimoki.jpg" },
-    { title: "Pimpinan Organisasi Kemahasiswaan Intra", description: "Pelantikan Komite Pertimbangan", src: "/documentation/pelantikan-komper.jpg" },
+    { title: "Full Stack Web Dev", description: "Wahana Global Immedia", src: "/documentation/wgi.jpg" },
+    { title: "Full Stack Web Dev", description: "Magang PT. Surabaya Autocomp Indonesia", src: "/documentation/sai.webp" },
+    { title: "Pimpinan Organisasi Kemahasiswaan Intra", description: "Pelantikan Pimpinan OKI", src: "/documentation/pelantikan-pimoki.webp" },
+    { title: "Pimpinan Organisasi Kemahasiswaan Intra", description: "Pelantikan Komite Pertimbangan", src: "/documentation/pelantikan-komper.webp" },
   ];
   const [openGallery, setOpenGallery] = useState(false);
 

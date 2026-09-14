@@ -20,7 +20,16 @@ export default function HomePage() {
       <section id="about" className="container mx-auto max-w-7xl px-4 py-16 md:py-20">
         <About />
       </section>
+      
+      <section id="work" className="bg-gray-50 dark:bg-gray-900/50 py-16 md:py-20">
+        <div className="container mx-auto max-w-7xl px-4">
+          <ExperienceWork />
+        </div>
+      </section>
 
+      <section id="projects" className="container mx-auto max-w-7xl px-4 py-16 md:py-20">
+        <Projects />
+      </section>
       <section id="education" className="bg-gray-50 dark:bg-gray-900/50 py-16 md:py-20">
         <div className="container mx-auto max-w-7xl px-4">
           <Education />
@@ -31,15 +40,7 @@ export default function HomePage() {
         <ExperienceOrg />
       </section>
 
-      <section id="work" className="bg-gray-50 dark:bg-gray-900/50 py-16 md:py-20">
-        <div className="container mx-auto max-w-7xl px-4">
-          <ExperienceWork />
-        </div>
-      </section>
 
-      <section id="projects" className="container mx-auto max-w-7xl px-4 py-16 md:py-20">
-        <Projects />
-      </section>
 
       <section id="contact" className="bg-gray-50 dark:bg-gray-900/50 py-16 md:py-20">
         <div className="container mx-auto max-w-7xl px-4">

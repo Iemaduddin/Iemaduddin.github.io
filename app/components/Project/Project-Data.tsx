@@ -269,7 +269,7 @@ export const projectsData: Project[] = [
       {
         title: "Home Page",
         description: "",
-        src: "/documentation/cms1.png",
+        src: "/documentation/cms1.webp",
       },
       {
         title: "Dashboard Admin",
