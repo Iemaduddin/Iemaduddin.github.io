@@ -19,7 +19,7 @@ export const translations = {
     // About
     "about.title": "About Me",
     "about.description":
-      "I am Didin, a graduate of the D4 Informatics Engineering Study Program, Department of Information Technology at State Polytechnic of Malang. I am a Full Stack Developer with over 2 years of experience in building and maintaining modern web applications using technologies such as Laravel, Next.js, AdonisJS, PHP, Node.js, Express.js, React.js, TypeScript/JavaScript, Python, and databases including MySQL, SQLite, and PostgreSQL. I have worked across diverse environments — from independent freelance projects, to internships in manufacturing companies and software houses, and professionally at a media company as a Web Developer.",
+      "Full Stack Developer with 2+ years of hands-on experience building and maintaining web applications using PHP, Laravel, Next.js, TypeScript, React.js, Node.js, and Python. Experienced in end-to-end software development, API and third-party integrations, web scraping, AI-integrated solutions, database management, deployment, and production maintenance. Also experienced in developing data-driven solutions for social media analytics and implementing technical SEO practices.",
     "about.skills": ["Problem Solving", "Team Collaboration", "Team Leadership", "Critical Thinking", "Time Management", "Decision Making"],
     "about.skillsTitle": "Skills",
     "about.downloadCV": "Download CV",
@@ -262,7 +262,7 @@ export const translations = {
     // About
     "about.title": "Tentang Saya",
     "about.description":
-      "Saya adalah seorang Full Stack Developer dengan lebih dari 2 tahun pengalaman dalam pengembangan aplikasi web menggunakan berbagai teknologi modern seperti Laravel, Next.js, AdonisJS, Node.js, Express.js, React.js, TypeScript/JavaScript, Python, serta database MySQL, SQLite, dan PostgreSQL. Saya telah terlibat dalam berbagai jenis lingkungan kerja — mulai dari proyek mandiri, magang di perusahaan manufaktur, magang di software house, hingga bekerja secara profesional di perusahaan media sebagai Web Developer.",
+      "Full Stack Developer dengan pengalaman praktis lebih dari 2 tahun dalam build dan maintenance aplikasi web menggunakan PHP, Laravel, Next.js, TypeScript, React.js, Node.js, dan Python. Berpengalaman dalam develop software secara menyeluruh, integrasi API dan pihak ketiga, web scraping, solusi terintegrasi AI, pengelolaan basis data, penerapan, dan pemeliharaan produksi. Selain itu, berpengalaman dalam mengembangkan solusi berbasis data untuk analitik media sosial serta menerapkan praktik SEO teknis.",
     "about.skills": ["Pemecahan Masalah", "Kolaborasi Tim", "Kepemimpinan Tim", "Berpikir Kritis", "Manajemen Waktu", "Pengambilan Keputusan"],
     "about.skillsTitle": "Keterampilan",
     "about.downloadCV": "Unduh CV",
