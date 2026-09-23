@@ -3,8 +3,9 @@ export const translations = {
     // Navbar
     "nav.home": "Home",
     "nav.about": "About",
+    "nav.work": "Work",
     "nav.education": "Education",
-    "nav.experience": "Experience",
+    "nav.org": "Organization",
     "nav.projects": "Projects",
     "nav.contact": "Contact",
 
@@ -233,6 +234,8 @@ export const translations = {
     "contact.phone": "Phone",
     "contact.location": "Location",
     "contact.documentation": "Experience Documentation",
+    "contact.copyEmail": "Copy email",
+    "contact.copied": "Copied!",
 
     // Footer
     "footer.build": "This portfolio is created using Next.js, Tailwind CSS, and Framer Motion.",
@@ -246,8 +249,9 @@ export const translations = {
     // Navbar
     "nav.home": "Beranda",
     "nav.about": "Tentang",
+    "nav.work": "Kerja",
     "nav.education": "Pendidikan",
-    "nav.experience": "Pengalaman",
+    "nav.org": "Organisasi",
     "nav.projects": "Proyek",
     "nav.contact": "Kontak",
 
@@ -482,6 +486,8 @@ export const translations = {
     "contact.phone": "Telepon",
     "contact.location": "Lokasi",
     "contact.documentation": "Dokumentasi Pengalaman",
+    "contact.copyEmail": "Salin email",
+    "contact.copied": "Tersalin!",
 
     // Footer
     "footer.build": "Portofolio ini dibuat menggunakan Next.js, Tailwind CSS, dan Framer Motion.",

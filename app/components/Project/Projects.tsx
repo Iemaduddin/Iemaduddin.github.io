@@ -1,8 +1,9 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Code, ChevronLeft, ChevronRight, X, ImageIcon, CheckCircle2, Github } from "lucide-react";
+import { Code, ChevronLeft, ChevronRight, X, Images, CheckCircle2, Github, Maximize2 } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import type { Swiper as SwiperClass } from "swiper";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -12,124 +13,148 @@ import { AlbumGallery } from "../Gallery";
 import { Project, projectsData } from "./Project-Data";
 import { useLanguage } from "../../contexts/LanguageContext";
 
-export default function Projects() {
-  const { t } = useLanguage();
-  const [selectedProjectIndex, setSelectedProjectIndex] = useState<number | null>(null);
-  const [showDetailDialog, setShowDetailDialog] = useState(false);
-  const [showGallery, setShowGallery] = useState(false);
-  const [refreshKey, setRefreshKey] = useState(0);
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
+};
 
-  const ProjectCard = ({ project, index }: { project: Project; index: number }) => (
-    <div
-      className="bg-white dark:bg-gray-800/70 
-      backdrop-blur-sm 
-      rounded-2xl shadow-md
-      border border-gray-200 dark:border-gray-700/80 
-      hover:shadow-2xl transition-all duration-300
-      flex flex-col h-full"
-    >
-      {/* Image Section - Aspect Ratio 16:10 (Laptop Style) */}
-      <div
-        className="w-full relative overflow-hidden flex items-center justify-center rounded-t-2xl bg-gray-900 cursor-pointer group aspect-[16/10]"
-        onClick={() => {
-          setSelectedProjectIndex(index);
-          setShowGallery(true);
-        }}
-      >
-        {project.images && project.images.length > 1 ? (
-          <Swiper
-            key={`${refreshKey}-${index}`}
-            modules={[Navigation, Pagination]}
-            spaceBetween={0}
-            slidesPerView={1}
-            navigation={{
-              nextEl: `.next-btn-${index}`,
-              prevEl: `.prev-btn-${index}`,
-            }}
-            pagination={{
-              clickable: true,
-              el: `.pagination-${index}`,
-            }}
-            className="w-full h-full"
-          >
-            {project.images.map((img, i) => (
-              <SwiperSlide key={i} className="bg-gray-900 h-full">
-                <div className="relative w-full h-full">
-                  <Image src={img.src} alt={`${img.title}-${i}`} fill className="object-cover group-hover:opacity-75 transition-opacity" />
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        ) : project.images?.length === 1 ? (
-          <div className="relative w-full h-full">
-            <Image src={project.images[0].src} alt={project.images[0].title} fill className="object-cover group-hover:opacity-75 transition-opacity" />
-          </div>
-        ) : (
-          <div className="w-full h-full flex items-center justify-center bg-gray-900 group-hover:bg-gray-800 transition-colors">
-            <Code className="text-gray-600" size={64} />
-          </div>
-        )}
+const rowVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } },
+};
 
-        {/* Arrow Buttons */}
-        {project.images && project.images.length > 1 && (
-          <>
-            <button className={`prev-btn-${index} absolute left-3 top-1/2 -translate-y-1/2 z-20 bg-black/50 text-white p-2 sm:p-3 rounded-full hover:bg-black/70 transition-all`} onClick={(e) => e.stopPropagation()}>
-              <ChevronLeft size={20} />
-            </button>
+function ProjectRow({
+  project,
+  index,
+  title,
+  description,
+  readMore,
+  onOpen,
+}: {
+  project: Project;
+  index: number;
+  title: string;
+  description: string;
+  readMore: string;
+  onOpen: (index: number) => void;
+}) {
+  const isEven = index % 2 === 0;
+  const totalImages = project.images?.length ?? 0;
 
-            <button className={`next-btn-${index} absolute right-3 top-1/2 -translate-y-1/2 z-20 bg-black/50 text-white p-2 sm:p-3 rounded-full hover:bg-black/70 transition-all`} onClick={(e) => e.stopPropagation()}>
-              <ChevronRight size={20} />
-            </button>
+  return (
+    <motion.div variants={rowVariants} className="grid lg:grid-cols-2 gap-8 lg:gap-14 items-center py-10 lg:py-14 border-b border-gray-200 dark:border-gray-800 last:border-b-0">
+      {/* Image — first in DOM so mobile shows image on top */}
+      <div className={isEven ? "lg:order-2" : "lg:order-1"}>
+        <div
+          className="group relative w-full overflow-hidden rounded-2xl bg-gray-900 shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer aspect-[16/10]"
+          onClick={() => onOpen(index)}
+        >
+          {totalImages > 0 ? (
+            <Image src={project.images![0].src} alt={project.images![0].title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center">
+              <Code className="text-gray-600" size={64} />
+            </div>
+          )}
 
-            <div className={`pagination-${index} absolute bottom-3 left-0 right-0 mx-auto z-20 flex justify-center gap-1`} onClick={(e) => e.stopPropagation()} />
-          </>
-        )}
+          {totalImages > 1 && (
+            <div className="absolute top-3 left-3 z-10 flex items-center gap-1.5 bg-black/60 backdrop-blur-sm text-white text-xs font-medium px-2.5 py-1.5 rounded-full">
+              <Images size={14} />
+              <span>1 / {totalImages}</span>
+            </div>
+          )}
+
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+        </div>
       </div>
 
-      {/* Content Section */}
-      <div className="p-6 sm:p-8 flex flex-col flex-1 min-h-[200px]">
-        <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-zinc-100 mb-3" suppressHydrationWarning>
-          {t(`projects.project${index + 1}.title`)}
+      {/* Content */}
+      <div className={isEven ? "lg:order-1" : "lg:order-2"}>
+        <span className="block text-5xl lg:text-6xl font-bold text-blue-600/10 dark:text-blue-400/15 leading-none mb-3 select-none">{String(index + 1).padStart(2, "0")}</span>
+
+        <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-zinc-100 mb-4" suppressHydrationWarning>
+          {title}
         </h3>
-        <div className="mb-5 sm:mb-6 flex-1">
-          <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base leading-relaxed line-clamp-3 mb-3" suppressHydrationWarning>
-            {t(`projects.project${index + 1}.description`)}
-          </p>
-          <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
-            <button
-              onClick={() => {
-                setSelectedProjectIndex(index);
-                setShowDetailDialog(true);
-              }}
-              className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-lg text-xs sm:text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-600 *:transition-colors"
-              suppressHydrationWarning
-            >
-              {t("projects.readMore")} →
-            </button>
-            {project.repository && (
-              <a
-                href={project.repository}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-black dark:bg-gray-700 text-white dark:text-gray-200 rounded-lg text-xs sm:text-sm font-medium hover:bg-gray-800 dark:hover:bg-gray-600 transition-colors"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <Github size={16} />
-                <span>Repository</span>
-              </a>
-            )}
-          </div>
-        </div>
-        <div className="flex flex-wrap gap-2 sm:gap-3">
+
+        <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base leading-relaxed line-clamp-3 mb-5" suppressHydrationWarning>
+          {description}
+        </p>
+
+        <div className="flex flex-wrap gap-2 mb-6">
           {project.technologies.map((tech) => (
-            <span key={tech} className="px-3 py-1.5 sm:px-4 sm:py-2 bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium hover:bg-blue-200 dark:hover:bg-blue-900/60 transition-colors">
+            <span key={tech} className="px-2.5 py-1 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-700 rounded-full text-xs sm:text-sm font-medium">
               {tech}
             </span>
           ))}
         </div>
+
+        <div className="flex flex-wrap items-center gap-3">
+          <button
+            onClick={() => onOpen(index)}
+            className="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 dark:bg-blue-500 text-white rounded-lg text-sm font-medium hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors"
+            suppressHydrationWarning
+          >
+            {readMore}
+          </button>
+          {project.repository && (
+            <a
+              href={project.repository}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border border-gray-300 dark:border-gray-600 rounded-lg text-sm font-medium hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+            >
+              <Github size={16} />
+              <span>Repository</span>
+            </a>
+          )}
+        </div>
       </div>
-    </div>
+    </motion.div>
   );
+}
+
+export default function Projects() {
+  const { t } = useLanguage();
+  const [openProjectIndex, setOpenProjectIndex] = useState<number | null>(null);
+  const [fullscreen, setFullscreen] = useState(false);
+  const [activeSlide, setActiveSlide] = useState(0);
+  const swiperRef = useRef<SwiperClass | null>(null);
+
+  const project = openProjectIndex !== null ? projectsData[openProjectIndex] : null;
+  const images = project?.images ?? [];
+
+  useEffect(() => {
+    if (openProjectIndex !== null) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [openProjectIndex, fullscreen]);
+
+  useEffect(() => {
+    if (openProjectIndex === null) return;
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && !fullscreen) {
+        setOpenProjectIndex(null);
+      }
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [openProjectIndex, fullscreen]);
+
+  const openProject = (index: number) => {
+    setOpenProjectIndex(index);
+    setActiveSlide(0);
+    setFullscreen(false);
+  };
+
+  const closeProject = () => {
+    setOpenProjectIndex(null);
+    setFullscreen(false);
+  };
 
   return (
     <>
@@ -142,227 +167,219 @@ export default function Projects() {
           <div className="w-24 h-1 bg-blue-600 dark:bg-blue-500 mx-auto rounded-full"></div>
         </div>
 
-        {/* Projects Carousel */}
-        <div className="relative">
-          {/* Navigation Buttons */}
-          <button
-            className="swiper-button-prev-custom 
-            hidden lg:flex
-            absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 
-            z-10 items-center justify-center w-12 h-12 rounded-full
-            bg-blue-600 dark:bg-blue-500 text-white hover:bg-blue-700 dark:hover:bg-blue-600 
-            transition-all hover:scale-110 shadow-lg"
-          >
-            <ChevronLeft size={28} />
-          </button>
-
-          <button
-            className="swiper-button-next-custom
-            hidden lg:flex
-            absolute right-0 top-1/2 -translate-y-1/2 translate-x-6
-            z-10 items-center justify-center w-12 h-12 rounded-full
-            bg-blue-600 dark:bg-blue-500 text-white hover:bg-blue-700 dark:hover:bg-blue-600 
-            transition-all hover:scale-110 shadow-lg"
-          >
-            <ChevronRight size={28} />
-          </button>
-
-          {/* Swiper Container */}
-          <Swiper
-            key={refreshKey}
-            modules={[Navigation, Pagination]}
-            spaceBetween={24}
-            slidesPerView={1}
-            navigation={{
-              nextEl: ".swiper-button-next-custom",
-              prevEl: ".swiper-button-prev-custom",
-            }}
-            pagination={{
-              clickable: true,
-              dynamicBullets: true,
-            }}
-            breakpoints={{
-              480: {
-                slidesPerView: 1.1,
-                spaceBetween: 16,
-              },
-              640: {
-                slidesPerView: 1.3,
-                spaceBetween: 20,
-              },
-              768: {
-                slidesPerView: 1.8,
-                spaceBetween: 24,
-              },
-              1024: {
-                slidesPerView: 2.2,
-                spaceBetween: 28,
-              },
-              1280: {
-                slidesPerView: 2.5,
-                spaceBetween: 32,
-              },
-            }}
-            className="projects-swiper !pb-12"
-          >
-            {projectsData.map((project, index) => (
-              <SwiperSlide key={index} className="py-8" style={{ height: "auto" }}>
-                <div className="h-full">
-                  <ProjectCard project={project} index={index} />
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
+        {/* Case-study rows */}
+        <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} className="max-w-6xl mx-auto">
+          {projectsData.map((project, index) => (
+            <ProjectRow
+              key={index}
+              project={project}
+              index={index}
+              title={t(`projects.project${index + 1}.title`) as string}
+              description={t(`projects.project${index + 1}.description`) as string}
+              readMore={t("projects.readMore") as string}
+              onOpen={openProject}
+            />
+          ))}
+        </motion.div>
       </div>
 
-      {/* Gallery Modal */}
-      <AnimatePresence mode="wait">
-        {selectedProjectIndex !== null && showGallery && (
-          <AlbumGallery
-            images={
-              projectsData[selectedProjectIndex].images?.map((img) => ({
-                src: img.src,
-                title: img.title,
-                description: t(`projects.project${selectedProjectIndex + 1}.description`) as string,
-              })) || []
-            }
-            onClose={() => {
-              setShowGallery(false);
-              setSelectedProjectIndex(null);
-              setRefreshKey((k) => k + 1);
-            }}
-          />
-        )}
-      </AnimatePresence>
-
-      {/* Project Detail Dialog */}
-      <AnimatePresence mode="wait">
-        {selectedProjectIndex !== null && showDetailDialog && (
+      {/* Project Detail Modal */}
+      <AnimatePresence>
+        {openProjectIndex !== null && project && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-            onClick={() => {
-              setShowDetailDialog(false);
-              setSelectedProjectIndex(null);
-            }}
+            onClick={closeProject}
           >
             <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden"
+              initial={{ scale: 0.95, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.95, opacity: 0, y: 20 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden flex flex-col"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Header */}
-              <div className="relative">
-                {/* Close Button */}
-                <button
-                  onClick={() => {
-                    setShowDetailDialog(false);
-                    setSelectedProjectIndex(null);
-                  }}
-                  className="absolute top-4 right-4 z-20 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all"
-                >
-                  <X size={24} />
-                </button>
+              {/* Close Button */}
+              <button
+                onClick={closeProject}
+                aria-label="Close"
+                className="fixed top-6 right-6 z-30 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all"
+              >
+                <X size={22} />
+              </button>
 
-                {/* Image Carousel */}
-                <div className="w-full relative overflow-hidden flex items-center justify-center bg-gray-900 aspect-[16/9]">
-                  {projectsData[selectedProjectIndex].images && projectsData[selectedProjectIndex].images!.length > 1 ? (
+              {/* Image Carousel — fixed header, outside scroll */}
+              <div className="relative w-full shrink-0 p-4 sm:p-6">
+                <div className="relative w-full aspect-[16/9] rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-900">
+                  {images.length > 1 ? (
                     <Swiper
-                      key={`dialog-${refreshKey}-${selectedProjectIndex}`}
+                      key={`modal-${openProjectIndex}`}
                       modules={[Navigation, Pagination]}
                       spaceBetween={0}
                       slidesPerView={1}
                       navigation={{
-                        nextEl: `.dialog-next-btn`,
-                        prevEl: `.dialog-prev-btn`,
+                        nextEl: ".modal-next-btn",
+                        prevEl: ".modal-prev-btn",
                       }}
                       pagination={{
                         clickable: true,
-                        el: `.dialog-pagination`,
+                        el: ".modal-pagination",
                       }}
+                      onSwiper={(swiper) => {
+                        swiperRef.current = swiper;
+                      }}
+                      onSlideChange={(swiper) => setActiveSlide(swiper.activeIndex)}
                       className="w-full h-full"
                     >
-                      {projectsData[selectedProjectIndex].images!.map((img, i) => (
-                        <SwiperSlide key={i} className="bg-gray-900 h-full">
+                      {images.map((img, i) => (
+                        <SwiperSlide key={i} className="bg-gray-100 dark:bg-gray-900 h-full">
                           <div className="relative w-full h-full">
-                            <Image src={img.src} alt={`${img.title}-${i}`} fill className="object-cover" />
+                            <Image src={img.src} alt={`${img.title}-${i}`} fill className="object-contain" />
                           </div>
                         </SwiperSlide>
                       ))}
                     </Swiper>
-                  ) : projectsData[selectedProjectIndex].images?.length === 1 ? (
+                  ) : images.length === 1 ? (
                     <div className="relative w-full h-full">
-                      <Image src={projectsData[selectedProjectIndex].images![0].src} alt={projectsData[selectedProjectIndex].images![0].title} fill className="object-cover" />
+                      <Image src={images[0].src} alt={images[0].title} fill className="object-contain" />
                     </div>
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-gray-900">
-                      <Code className="text-gray-600" size={64} />
+                    <div className="w-full h-full flex items-center justify-center">
+                      <Code className="text-gray-400 dark:text-gray-600" size={64} />
                     </div>
                   )}
-
-                  {/* Arrow Buttons */}
-                  {projectsData[selectedProjectIndex].images && projectsData[selectedProjectIndex].images!.length > 1 && (
-                    <>
-                      <button className="dialog-prev-btn absolute left-3 top-1/2 -translate-y-1/2 z-20 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition-all">
-                        <ChevronLeft size={24} />
-                      </button>
-
-                      <button className="dialog-next-btn absolute right-3 top-1/2 -translate-y-1/2 z-20 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition-all">
-                        <ChevronRight size={24} />
-                      </button>
-
-                      <div className="dialog-pagination absolute bottom-3 left-0 right-0 mx-auto z-20 flex justify-center gap-1" />
-                    </>
-                  )}
                 </div>
+
+                {/* Counter */}
+                {images.length > 1 && (
+                  <div className="absolute top-7 left-7 z-20 bg-black/60 backdrop-blur-sm text-white text-xs font-medium px-3 py-1.5 rounded-full">
+                    {activeSlide + 1} / {images.length}
+                  </div>
+                )}
+
+                {/* Fullscreen button */}
+                {images.length > 0 && (
+                  <button
+                    onClick={() => setFullscreen(true)}
+                    aria-label="View fullscreen"
+                    className="absolute bottom-7 right-7 z-20 bg-black/50 hover:bg-black/70 text-white p-2.5 rounded-full transition-all"
+                  >
+                    <Maximize2 size={18} />
+                  </button>
+                )}
+
+                {/* Arrow Buttons */}
+                {images.length > 1 && (
+                  <>
+                    <button className="modal-prev-btn absolute left-7 top-1/2 -translate-y-1/2 z-20 bg-black/50 text-white p-2.5 sm:p-3 rounded-full hover:bg-black/70 transition-all">
+                      <ChevronLeft size={22} />
+                    </button>
+                    <button className="modal-next-btn absolute right-7 top-1/2 -translate-y-1/2 z-20 bg-black/50 text-white p-2.5 sm:p-3 rounded-full hover:bg-black/70 transition-all">
+                      <ChevronRight size={22} />
+                    </button>
+                    <div className="modal-pagination absolute bottom-7 left-0 right-0 mx-auto z-20 flex justify-center gap-1 w-fit" />
+                  </>
+                )}
               </div>
 
-              {/* Content */}
-              <div className="p-6 sm:p-8 overflow-y-auto max-h-[calc(90vh-60vh)]">
-                <h2 className="text-xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4" suppressHydrationWarning>
-                  {t(`projects.project${selectedProjectIndex + 1}.title`)}
-                </h2>
-
-                <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base leading-relaxed mb-6" suppressHydrationWarning>
-                  {t(`projects.project${selectedProjectIndex + 1}.description`)}
-                </p>
-
-                {/* Features */}
-                <div className="mb-6">
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2" suppressHydrationWarning>
-                    <CheckCircle2 className="text-blue-600 dark:text-blue-500" size={24} />
-                    {t("projects.features")}
-                  </h3>
-                  <ul className="space-y-2">
-                    {Array.isArray(t(`projects.project${selectedProjectIndex + 1}.features`)) &&
-                      (t(`projects.project${selectedProjectIndex + 1}.features`) as string[]).map((feature, idx) => (
-                        <li key={idx} className="flex items-start gap-3 text-gray-600 dark:text-gray-300 text-sm sm:text-base">
-                          <span className="text-blue-600 dark:text-blue-500 mt-1">•</span>
-                          <span suppressHydrationWarning>{feature}</span>
-                        </li>
-                      ))}
-                  </ul>
-                </div>
-
-                {/* Technologies */}
-                <div className="mb-6">
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Tech Stack</h3>
-                  <div className="flex flex-wrap gap-2 sm:gap-3">
-                    {projectsData[selectedProjectIndex].technologies.map((tech) => (
-                      <span key={tech} className="px-4 py-2 bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium">
-                        {tech}
-                      </span>
+              {/* Scrollable area — starts below the image */}
+              <div className="overflow-y-auto flex-1 min-h-0">
+                {/* Thumbnail Strip */}
+                {images.length > 1 && (
+                  <div className="flex gap-2 overflow-x-auto px-4 sm:px-6 py-3 border-b border-gray-200 dark:border-gray-700">
+                    {images.map((img, i) => (
+                      <button
+                        key={i}
+                        onClick={() => {
+                          swiperRef.current?.slideTo(i);
+                          setActiveSlide(i);
+                        }}
+                        className={`relative w-20 h-12 shrink-0 rounded-md overflow-hidden border-2 transition-all ${
+                          i === activeSlide
+                            ? "border-blue-600 dark:border-blue-500 opacity-100"
+                            : "border-transparent opacity-50 hover:opacity-80"
+                        }`}
+                      >
+                        <Image src={img.src} alt={img.title} fill className="object-cover" />
+                      </button>
                     ))}
                   </div>
+                )}
+
+                {/* Content */}
+                <div className="p-5 sm:p-8">
+                  <h2 className="text-xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4" suppressHydrationWarning>
+                    {t(`projects.project${openProjectIndex + 1}.title`)}
+                  </h2>
+
+                  <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base leading-relaxed mb-6" suppressHydrationWarning>
+                    {t(`projects.project${openProjectIndex + 1}.description`)}
+                  </p>
+
+                  {/* Features */}
+                  <div className="mb-6">
+                    <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2" suppressHydrationWarning>
+                      <CheckCircle2 className="text-blue-600 dark:text-blue-500" size={22} />
+                      {t("projects.features")}
+                    </h3>
+                    <ul className="space-y-2">
+                      {Array.isArray(t(`projects.project${openProjectIndex + 1}.features`)) &&
+                        (t(`projects.project${openProjectIndex + 1}.features`) as string[]).map((feature, idx) => (
+                          <li key={idx} className="flex items-start gap-3 text-gray-600 dark:text-gray-300 text-sm sm:text-base">
+                            <span className="text-blue-600 dark:text-blue-500 mt-1">•</span>
+                            <span suppressHydrationWarning>{feature}</span>
+                          </li>
+                        ))}
+                    </ul>
+                  </div>
+
+                  {/* Technologies */}
+                  <div className="mb-6">
+                    <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-3">Tech Stack</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies.map((tech) => (
+                        <span
+                          key={tech}
+                          className="px-3 py-1.5 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-700 rounded-full text-sm font-medium"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Repository */}
+                  {project.repository && (
+                    <a
+                      href={project.repository}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 dark:bg-blue-500 text-white rounded-lg text-sm font-medium hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors"
+                    >
+                      <Github size={16} />
+                      <span>View Repository</span>
+                    </a>
+                  )}
                 </div>
               </div>
             </motion.div>
           </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Fullscreen Gallery */}
+      <AnimatePresence>
+        {fullscreen && openProjectIndex !== null && (
+          <AlbumGallery
+            images={images.map((img) => ({
+              src: img.src,
+              title: img.title,
+              description: t(`projects.project${openProjectIndex + 1}.description`) as string,
+            }))}
+            onClose={() => setFullscreen(false)}
+          />
         )}
       </AnimatePresence>
     </>

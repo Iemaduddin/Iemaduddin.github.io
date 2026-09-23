@@ -1,12 +1,20 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Github, Linkedin, Mail, Download } from "lucide-react";
 import { useLanguage } from "../contexts/LanguageContext";
+
+const footerLinks = [
+  { key: "nav.about", href: "#about" },
+  { key: "nav.work", href: "#work" },
+  { key: "nav.projects", href: "#projects" },
+  { key: "nav.education", href: "#education" },
+  { key: "nav.org", href: "#org" },
+  { key: "nav.contact", href: "#contact" },
+] as const;
 
 export default function Footer() {
   const { t } = useLanguage();
-
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
@@ -20,58 +28,60 @@ export default function Footer() {
       <div className="container mx-auto max-w-7xl px-4">
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           <div>
-            <h3 className="text-xl font-bold text-white mb-4">Portfolio</h3>
-            <p className="text-gray-400" suppressHydrationWarning>
+            <h3 className="text-xl font-bold text-white mb-2">Iemaduddin</h3>
+            <p className="text-sm text-gray-400 mb-4" suppressHydrationWarning>
               {t("footer.build")}
             </p>
+            <a
+              href="/cv.pdf"
+              download
+              className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-300 border border-gray-700 rounded-lg hover:border-blue-500 hover:text-blue-400 transition-colors"
+              suppressHydrationWarning
+            >
+              <Download size={16} />
+              {t("about.downloadCV")}
+            </a>
           </div>
+
           <div>
-            <h4 className="text-lg font-semibold text-white mb-4" suppressHydrationWarning>
+            <h4 className="text-sm font-semibold uppercase tracking-wider text-gray-500 mb-4" suppressHydrationWarning>
               {t("footer.quickLinks")}
             </h4>
-            <ul className="space-y-2">
-              <li>
-                <a href="#about" className="text-gray-400 hover:text-white transition-colors" suppressHydrationWarning>
-                  {t("footer.quickLinkItem1")}
-                </a>
-              </li>
-              <li>
-                <a href="#projects" className="text-gray-400 hover:text-white transition-colors" suppressHydrationWarning>
-                  {t("footer.quickLinkItem2")}
-                </a>
-              </li>
-              <li>
-                <a href="#contact" className="text-gray-400 hover:text-white transition-colors" suppressHydrationWarning>
-                  {t("footer.quickLinkItem3")}
-                </a>
-              </li>
+            <ul className="grid grid-cols-2 gap-x-4 gap-y-2">
+              {footerLinks.map((link) => (
+                <li key={link.href}>
+                  <a href={link.href} className="text-sm text-gray-400 hover:text-white transition-colors" suppressHydrationWarning>
+                    {t(link.key)}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
+
           <div>
-            <h4 className="text-lg font-semibold text-white mb-4" suppressHydrationWarning>
-              {" "}
+            <h4 className="text-sm font-semibold uppercase tracking-wider text-gray-500 mb-4" suppressHydrationWarning>
               {t("footer.connect")}
             </h4>
-            <div className="flex gap-4">
+            <div className="flex gap-3">
               {socialLinks.map((social, index) => (
                 <motion.a
                   key={index}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  whileHover={{ scale: 1.2, y: -2 }}
-                  whileTap={{ scale: 0.9 }}
-                  className="p-2 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors"
+                  whileHover={{ y: -2 }}
+                  className="p-2.5 border border-gray-700 rounded-lg text-gray-400 hover:border-blue-500 hover:text-blue-400 transition-colors"
                   aria-label={social.label}
                 >
-                  <social.icon size={20} />
+                  <social.icon size={18} />
                 </motion.a>
               ))}
             </div>
           </div>
         </div>
-        <div className="border-t border-gray-800 pt-8 text-center">
-          <p className="text-gray-400 flex items-center justify-center gap-2">Iemaduddin © {currentYear}</p>
+
+        <div className="border-t border-gray-800 pt-6 text-center">
+          <p className="text-sm text-gray-500">Iemaduddin © {currentYear}</p>
         </div>
       </div>
     </footer>

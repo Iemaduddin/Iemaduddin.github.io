@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { Download } from "lucide-react";
 import { SiNextdotjs, SiLaravel, SiPhp, SiNodedotjs, SiTypescript, SiReact, SiMysql, SiSqlite, SiPostgresql, SiExpress, SiPython, SiAdonisjs } from "react-icons/si";
 import { useLanguage } from "../contexts/LanguageContext";
 
@@ -25,106 +24,91 @@ const technologies: Technology[] = [
   { name: "PostgreSQL", icon: SiPostgresql },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut" as const,
+    },
+  },
+};
+
 export default function About() {
   const { t } = useLanguage();
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-      },
-    },
-  };
   const skillsData = t("about.skills") as string[];
+
   return (
     <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} className="max-w-7xl mx-auto">
-      <motion.div variants={itemVariants} className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4" suppressHydrationWarning>
+      {/* Header */}
+      <motion.div variants={itemVariants} className="text-center mb-12 sm:mb-16">
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4" suppressHydrationWarning>
           {t("about.title")}
         </h2>
         <div className="w-24 h-1 bg-blue-600 dark:bg-blue-500 mx-auto rounded-full"></div>
       </motion.div>
 
-      <div className="grid md:grid-cols-2 gap-8">
-        <motion.div variants={itemVariants} className="space-y-4">
-          <p className="text-gray-600 dark:text-gray-300 leading-relaxed" suppressHydrationWarning>
-            {t("about.description")}
-          </p>
-        </motion.div>
+      {/* Description */}
+      <motion.div variants={itemVariants} className="max-w-5xl mx-auto mb-12">
+        <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-base sm:text-lg" suppressHydrationWarning>
+          {t("about.description")}
+        </p>
+      </motion.div>
 
-        <motion.div variants={itemVariants} className="space-y-6">
-          {/* Skills */}
-          <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-4" suppressHydrationWarning>
-              {t("about.skillsTitle")}
-            </h3>
-            <div className="flex flex-wrap gap-2" suppressHydrationWarning>
-              {skillsData.map((skill, index) => (
-                <motion.span
-                  key={index}
-                  initial={{ opacity: 0, scale: 0 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-sm font-medium"
-                  suppressHydrationWarning
-                >
-                  {skill}
-                </motion.span>
-              ))}
-            </div>
-          </div>
-          <motion.a
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            href="/cv.pdf"
-            download
-            className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 dark:bg-blue-500 text-white rounded-lg font-medium shadow-lg hover:shadow-xl transition-shadow mt-6"
-            suppressHydrationWarning
-          >
-            <Download size={20} />
-            {t("about.downloadCV")}
-          </motion.a>
-        </motion.div>
-      </div>
-      {/* Technologies */}
-      <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md mt-10 border border-gray-200 dark:border-gray-700">
-        <h3 className="font-semibold text-gray-900 dark:text-white mb-4" suppressHydrationWarning>
+      {/* Skills — chips tanpa kartu */}
+      <motion.div variants={itemVariants} className="max-w-5xl mx-auto mb-12">
+        <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-4" suppressHydrationWarning>
+          {t("about.skillsTitle")}
+        </h3>
+        <div className="flex flex-wrap gap-2.5" suppressHydrationWarning>
+          {skillsData.map((skill, index) => (
+            <span
+              key={index}
+              className="px-4 py-2 border border-gray-200 dark:border-gray-700 rounded-full text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800/50 hover:border-blue-400 dark:hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors cursor-default"
+              suppressHydrationWarning
+            >
+              {skill}
+            </span>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* Tech Stack — tanpa kartu wrapper */}
+      <motion.div variants={itemVariants} className="max-w-5xl mx-auto">
+        <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-6" suppressHydrationWarning>
           {t("about.technologiesTitle")}
         </h3>
-        <div className="grid grid-cols-3 md:grid-cols-4 gap-3">
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4" suppressHydrationWarning>
           {technologies.map((tech, index) => {
             const IconComponent = tech.icon;
             return (
               <motion.div
                 key={tech.name}
-                initial={{ opacity: 0, scale: 0 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
-                whileHover={{ scale: 1.1 }}
-                className="flex flex-col items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
+                transition={{ delay: index * 0.04, duration: 0.35, ease: "easeOut" }}
+                className="group flex flex-col items-center gap-2 p-4 rounded-xl border border-gray-200 dark:border-gray-700/60 bg-white dark:bg-gray-800/40 hover:border-blue-300 dark:hover:border-blue-600/60 hover:-translate-y-1 hover:shadow-md transition-all duration-200"
               >
-                <IconComponent size={32} className="text-gray-700 dark:text-gray-300 mb-1" />
-                <span className="text-xs text-gray-700 dark:text-gray-300 text-center font-medium">{tech.name}</span>
+                <IconComponent size={30} className="text-gray-600 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" />
+                <span className="text-xs text-gray-600 dark:text-gray-400 text-center font-medium leading-tight">{tech.name}</span>
               </motion.div>
             );
           })}
         </div>
-      </div>
+      </motion.div>
     </motion.div>
   );
 }
