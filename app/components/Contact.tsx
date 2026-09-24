@@ -86,7 +86,7 @@ export default function Contact() {
         </p>
       </motion.div>
 
-      <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 lg:gap-14 items-start">
+      <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 lg:gap-14 items-start [&>*]:min-w-0">
         {/* Contact info — baris ringkas tanpa kartu tebal */}
         <motion.div variants={itemVariants} className="space-y-8">
           <div>
@@ -94,38 +94,52 @@ export default function Contact() {
               {t("contact.info")}
             </h3>
             <div className="space-y-1">
-              {contactInfo.map((info, index) => (
-                <a
-                  key={index}
-                  href={info.href}
-                  target={info.href.startsWith("http") ? "_blank" : undefined}
-                  rel={info.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                  className="flex items-center gap-4 px-3 py-3 -mx-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors group"
-                >
-                  <span className="p-2 rounded-lg bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 shrink-0 group-hover:bg-blue-100 dark:group-hover:bg-blue-900/50 transition-colors">
-                    <info.icon size={18} />
-                  </span>
-                  <span className="min-w-0 flex-1">
-                    <span className="block text-xs text-gray-500 dark:text-gray-400" suppressHydrationWarning>
-                      {info.label}
-                    </span>
-                    <span className="block text-sm sm:text-base text-gray-900 dark:text-white font-medium truncate" suppressHydrationWarning>
-                      {info.value}
-                    </span>
-                  </span>
-                </a>
-              ))}
+              {contactInfo.map((info, index) => {
+                const isEmail = info.href.startsWith("mailto:");
+                const rowClass = "flex items-center gap-4 px-3 py-3 -mx-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors group";
 
-              {/* Copy email */}
-              <button
-                type="button"
-                onClick={copyEmail}
-                className="flex items-center gap-2 px-4 py-2.5 mt-3 text-sm font-medium text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-400 dark:hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                suppressHydrationWarning
-              >
-                {copied ? <Check size={16} className="text-emerald-500" /> : <Copy size={16} />}
-                <span suppressHydrationWarning>{copied ? t("contact.copied") : t("contact.copyEmail")}</span>
-              </button>
+                const content = (
+                  <>
+                    <span className="p-2 rounded-lg bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 shrink-0 group-hover:bg-blue-100 dark:group-hover:bg-blue-900/50 transition-colors">
+                      <info.icon size={18} />
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <span className="block text-xs text-gray-500 dark:text-gray-400" suppressHydrationWarning>
+                        {info.label}
+                      </span>
+                      <span className="block text-sm sm:text-base text-gray-900 dark:text-white font-medium truncate" suppressHydrationWarning>
+                        {info.value}
+                      </span>
+                    </span>
+                  </>
+                );
+
+                if (isEmail) {
+                  return (
+                    <div key={index} className={rowClass}>
+                      <a href={info.href} className="flex items-center gap-4 min-w-0 flex-1">
+                        {content}
+                      </a>
+                      <button
+                        type="button"
+                        onClick={copyEmail}
+                        aria-label={copied ? (t("contact.copied") as string) : (t("contact.copyEmail") as string)}
+                        title={copied ? (t("contact.copied") as string) : (t("contact.copyEmail") as string)}
+                        className="shrink-0 p-2 rounded-lg text-gray-400 dark:text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors"
+                        suppressHydrationWarning
+                      >
+                        {copied ? <Check size={16} className="text-emerald-500" /> : <Copy size={16} />}
+                      </button>
+                    </div>
+                  );
+                }
+
+                return (
+                  <a key={index} href={info.href} target="_blank" rel="noopener noreferrer" className={rowClass}>
+                    {content}
+                  </a>
+                );
+              })}
             </div>
           </div>
 
@@ -157,11 +171,11 @@ export default function Contact() {
         </motion.div>
 
         {/* Documentation */}
-        <motion.div variants={itemVariants} className="relative w-full">
+        <motion.div variants={itemVariants} className="relative w-full min-w-0 overflow-hidden">
           <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-4" suppressHydrationWarning>
             {t("contact.documentation")}
           </h3>
-          <div className="relative">
+          <div className="relative w-full max-w-full overflow-hidden">
             <button
               aria-label="Previous"
               className="contact-swiper-prev hidden sm:flex absolute left-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-black/50 text-white items-center justify-center hover:bg-black/70 transition"
@@ -180,17 +194,17 @@ export default function Contact() {
               navigation={{ nextEl: ".contact-swiper-next", prevEl: ".contact-swiper-prev" }}
               spaceBetween={16}
               slidesPerView={1}
-              className="w-full !pb-10"
+              className="w-full max-w-full overflow-hidden !pb-10"
             >
               {screenshots.map((img, i) => (
-                <SwiperSlide key={i}>
+                <SwiperSlide key={i} className="!w-full">
                   <button
                     type="button"
                     onClick={() => setOpenGallery(true)}
                     className="relative w-full h-56 sm:h-72 md:h-80 rounded-xl overflow-hidden cursor-pointer group border border-gray-200 dark:border-gray-700"
                     aria-label={img.title}
                   >
-                    <Image src={img.src} alt={img.title || `screenshot-${i}`} fill className="object-cover transition-transform duration-500 group-hover:scale-105" priority={i === 0} />
+                    <Image src={img.src} alt={img.title || `screenshot-${i}`} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="(max-width: 768px) 100vw, 50vw" priority={i === 0} />
                     <span className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
                   </button>
                 </SwiperSlide>

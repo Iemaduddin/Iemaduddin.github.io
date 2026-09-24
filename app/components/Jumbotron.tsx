@@ -145,29 +145,39 @@ export default function Jumbotron() {
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
-      <motion.button
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1, duration: 0.5 }}
-        type="button"
-        aria-label={t("jumbotron.scrollDown") as string}
-        onClick={() => {
-          const aboutSection = document.querySelector("#about");
-          if (aboutSection) {
-            aboutSection.scrollIntoView({ behavior: "smooth" });
-          }
-        }}
-        className="absolute bottom-5 sm:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 cursor-pointer group z-20 text-gray-400 dark:text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-        suppressHydrationWarning
-      >
-        <span className="text-[11px] sm:text-xs font-medium tracking-wide" suppressHydrationWarning>
-          {t("jumbotron.scrollDown")}
-        </span>
-        <motion.span animate={{ y: [0, 5, 0] }} transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}>
-          <ChevronDown size={20} />
-        </motion.span>
-      </motion.button>
+      {/* Scroll indicator — mouse icon, always centered */}
+      <div className="absolute bottom-4 sm:bottom-6 left-0 right-0 flex justify-center z-20 pointer-events-none">
+        <motion.button
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1, duration: 0.5 }}
+          type="button"
+          aria-label={t("jumbotron.scrollDown") as string}
+          onClick={() => {
+            const aboutSection = document.querySelector("#about");
+            if (aboutSection) {
+              aboutSection.scrollIntoView({ behavior: "smooth" });
+            }
+          }}
+          className="pointer-events-auto flex flex-col items-center gap-1 cursor-pointer group text-gray-500 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors whitespace-nowrap"
+          suppressHydrationWarning
+        >
+          <motion.span animate={{ y: [0, 6, 0] }} transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }} className="flex flex-col items-center">
+            <span className="text-[10px] sm:text-xs font-medium mb-2 sm:mb-3" suppressHydrationWarning>
+              {t("jumbotron.scrollDown")}
+            </span>
+            {/* Mouse — desktop only */}
+            <span className="hidden sm:block w-5 h-8 sm:w-6 sm:h-10 border-2 border-gray-400 dark:border-gray-200 rounded-full relative group-hover:border-blue-500 dark:group-hover:border-blue-400 transition-colors">
+              <motion.span
+                animate={{ y: [0, 10, 0], opacity: [0.5, 1, 0.5] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                className="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-gray-400 dark:bg-gray-200 group-hover:bg-blue-500 dark:group-hover:bg-blue-400 rounded-full absolute left-1/2 -translate-x-1/2 top-1.5 sm:top-2"
+              />
+            </span>
+            <ChevronDown size={18} className="mt-1 sm:mt-2 text-gray-400 dark:text-gray-200 group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors" />
+          </motion.span>
+        </motion.button>
+      </div>
     </section>
   );
 }

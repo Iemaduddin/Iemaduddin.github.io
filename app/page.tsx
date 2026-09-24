@@ -13,7 +13,7 @@ import BackToTop from "./components/BackToTop";
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen overflow-x-hidden">
       <Navbar />
       <Jumbotron />
 
