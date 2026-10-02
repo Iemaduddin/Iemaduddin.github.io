@@ -1,4 +1,5 @@
 export interface Project {
+  slug: string;
   title: string;
   description: string;
   technologies: string[];
@@ -12,11 +13,129 @@ export interface Project {
 
 export const projectsData: Project[] = [
   {
+    slug: "intelligent-point-of-sale-and-business-analytics",
+    title: "Intelligent Point of Sale & Business Analytics (NEXPOS)",
+    description: "",
+    technologies: ["Laravel","Python", "React Js", "Typescript", "Inertia Js", "Postgre SQL", "Tailwind CSS", "Nivo Charts" ],
+    images: [
+      {
+        title: "Cover",
+        description: "",
+        src: "/documentation/cover-nexpos.webp",
+      },
+      {
+        title: "Point of Sale",
+        description: "",
+        src: "/documentation/nexpos/01-pos.png",
+      },
+      {
+        title: "Dashboard",
+        description: "",
+        src: "/documentation/nexpos/02-dashboard.png",
+      },
+      {
+        title: "Reports",
+        description: "",
+        src: "/documentation/nexpos/03-reports.png",
+      },
+      {
+        title: "AI Assistant",
+        description: "",
+        src: "/documentation/nexpos/04-ai.png",
+      },
+      {
+        title: "Session List",
+        description: "",
+        src: "/documentation/nexpos/05-session.png",
+      },
+      {
+        title: "Inventory Management",
+        description: "",
+        src: "/documentation/nexpos/06-inventory.png",
+      },
+    ],
+  },
+  {
+    slug: "social-media-analytics-tracking-platform",
+    title: "Social Media Analytics & Tracking Platform",
+    description: "",
+    technologies: ["PHP","Python", "MySQL", "Javascript", "Tailwind CSS"],
+    images: [
+      {
+        title: "Cover",
+        description: "",
+        src: "/documentation/cover-social-media.webp",
+      },
+    ],
+  },
+  {
+    slug: "kost-rental-platform",
+    title: "Kost Rental Platform",
+    description: "",
+    technologies: ["Next Js", "MySQL", "TypeScript", "Tailwind CSS", "Nivo Charts", "Prisma ORM"],
+    images: [
+      {
+        title: "Cover",
+        description: "",
+        src: "/documentation/cover-kost.webp",
+      },
+      {
+        title: "Home Page",
+        description: "",
+        src: "/documentation/01-kost.webp",
+      },
+      {
+        title: "Listing Kost Page",
+        description: "",
+        src: "/documentation/02-kost.webp",
+      },
+      {
+        title: "Detail Kost Page",
+        description: "",
+        src: "/documentation/03-kost.webp",
+      },
+    ],
+  },
+  {
+    slug: "real-estate-advertising-platform",
+    title: "Real Estate Advertising Platform",
+    description: "",
+    technologies: ["Next Js", "MySQL", "TypeScript", "Tailwind CSS", "Nivo Charts", "Prisma ORM"],
+    images: [
+      {
+        title: "Cover",
+        description: "",
+        src: "/documentation/cover-property.webp",
+      },
+      {
+        title: "Home Page",
+        description: "",
+        src: "/documentation/01-property.webp",
+      },
+      {
+        title: "Listing Property Page",
+        description: "",
+        src: "/documentation/02-property.webp",
+      },
+      {
+        title: "Detail Property Page",
+        description: "",
+        src: "/documentation/03-property.webp",
+      },
+    ],
+  },
+  {
+    slug: "cooperative-system",
     title: "Cooperative System",
     description: "",
     technologies: ["React Js", "Inertia Js", "Laravel", "MySQL", "TypeScript", "Tailwind CSS", "Nivo Charts"],
     repository: "https://github.com/Iemaduddin/sistem-koperasi",
     images: [
+      {
+        title: "Cover",
+        description: "",
+        src: "/documentation/cover-koperasi.webp",
+      },
       {
         title: "Dashboard",
         description: "",
@@ -90,11 +209,17 @@ export const projectsData: Project[] = [
     ],
   },
   {
+    slug: "inventory-management-system",
     title: "Inventory Management System",
     description: "",
     technologies: ["React Js", "Laravel", "MySQL", "TypeScript", "Tailwind CSS", "Apexchart.Js"],
     repository: "https://github.com/Iemaduddin/inventory-management-system",
     images: [
+      {
+        title: "Cover",
+        description: "",
+        src: "/documentation/cover-ims.webp",
+      },
       {
         title: "Home Page",
         description: "",
@@ -108,11 +233,17 @@ export const projectsData: Project[] = [
     ],
   },
   {
+    slug: "simeva",
     title: "Event and Asset Management System",
     description: "",
     technologies: ["Laravel", "MySQL", "Laravel Excel", "Laravel Spatie"],
     repository: "https://github.com/Iemaduddin/simeva",
     images: [
+      {
+        title: "Cover",
+        description: "",
+        src: "/documentation/cover-simeva.webp",
+      },
       {
         title: "Home Page",
         description: "",
@@ -166,11 +297,17 @@ export const projectsData: Project[] = [
     ],
   },
   {
+    slug: "whatsapp-data-forensic",
     title: "WhatsApp Data Forensic Web Platform",
     description: "",
     technologies: ["TypeScript (Adonis Js)", "Python", "SQLite", "MySQL", "Ubuntu"],
     repository: "https://github.com/Iemaduddin/wa_forensic",
     images: [
+      {
+        title: "Cover",
+        description: "",
+        src: "/documentation/cover-wa-extract.webp",
+      },
       {
         title: "WhatsApp Data Forensic",
         description: "",
@@ -179,10 +316,16 @@ export const projectsData: Project[] = [
     ],
   },
   {
+    slug: "control-airshipment-permission",
     title: "Control Airshipment Permission",
     description: "",
     technologies: ["Laravel", "Laravel-Excel", "ApexCharts.Js", "MySQL"],
     images: [
+      {
+        title: "Cover",
+        description: "",
+        src: "/documentation/cover-cap.webp",
+      },
       {
         title: "Control Airshipment Permission",
         description: "",
@@ -191,11 +334,17 @@ export const projectsData: Project[] = [
     ],
   },
   {
+    slug: "e-voting-system",
     title: "E-Voting System",
     description: "",
     technologies: ["Laravel", "Livewire", "Laravel-Spatie", "MySQL"],
     repository: "https://github.com/Iemaduddin/e-voting",
     images: [
+  {
+        title: "Cover",
+        description: "",
+        src: "/documentation/cover-e-voting.webp",
+      },
       {
         title: "Voting Page",
         description: "",
@@ -224,10 +373,16 @@ export const projectsData: Project[] = [
     ],
   },
   {
+    slug: "visualization-occupancy-material",
     title: "Visualization Occupancy Material",
     description: "",
     technologies: ["Laravel", "Laravel-Excel", "ApexCharts.Js", "MySQL"],
     images: [
+      {
+        title: "Cover",
+        description: "",
+        src: "/documentation/cover-vomate.webp",
+      },
       {
         title: "Visualization Occupancy Material",
         description: "",
@@ -236,11 +391,17 @@ export const projectsData: Project[] = [
     ],
   },
   {
+    slug: "organizational-letter-management-system",
     title: "Organizational Letter Management System",
     description: "",
     technologies: ["Laravel", "MySQL", "ApexCharts.Js", "Google Drive API", "Google Sheets API"],
     repository: "https://github.com/Iemaduddin/sistem_persuratan",
     images: [
+      {
+        title: "Cover",
+        description: "",
+        src: "/documentation/cover-org-letter.webp",
+      },
       {
         title: "Organizational Letter Management System",
         description: "",
@@ -249,10 +410,16 @@ export const projectsData: Project[] = [
     ],
   },
   {
+    slug: "vehicle-license-management",
     title: "Vehicle License Management",
     description: "",
     technologies: ["Laravel", "Laravel-Excel", "MySQL"],
     images: [
+      {
+        title: "Cover",
+        description: "",
+        src: "/documentation/cover-vehicle.webp",
+      },
       {
         title: "Vehicle License Management",
         description: "",
@@ -261,11 +428,17 @@ export const projectsData: Project[] = [
     ],
   },
   {
+    slug: "cms-news-portal",
     title: "Content Management System (News Portal)",
     description: "",
     technologies: ["React Js", "Express Js", "PostgreSQL", "TypeScript", "Tailwind CSS", "Prisma ORM"],
     repository: "https://github.com/Iemaduddin/react-project/tree/main/cms-app",
     images: [
+      {
+        title: "Cover",
+        description: "",
+        src: "/documentation/cover-cms.webp",
+      },
       {
         title: "Home Page",
         description: "",

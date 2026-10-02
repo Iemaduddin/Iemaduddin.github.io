@@ -13,16 +13,6 @@ import { AlbumGallery } from "../Gallery";
 import { Project, projectsData } from "./Project-Data";
 import { useLanguage } from "../../contexts/LanguageContext";
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
-};
-
-const rowVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } },
-};
-
 function ProjectRow({
   project,
   index,
@@ -42,11 +32,17 @@ function ProjectRow({
   const totalImages = project.images?.length ?? 0;
 
   return (
-    <motion.div variants={rowVariants} className="grid lg:grid-cols-2 gap-8 lg:gap-14 items-center py-10 lg:py-14 border-b border-gray-200 dark:border-gray-800 last:border-b-0">
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="grid lg:grid-cols-2 gap-8 lg:gap-14 items-center py-10 lg:py-14 border-b border-gray-200 dark:border-gray-800 last:border-b-0"
+    >
       {/* Image — first in DOM so mobile shows image on top */}
       <div className={isEven ? "lg:order-2" : "lg:order-1"}>
         <div
-          className="group relative w-full overflow-hidden rounded-2xl bg-gray-900 shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer aspect-[16/10]"
+          className="group relative w-full overflow-hidden rounded-2xl bg-gray-900 shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer aspect-video"
           onClick={() => onOpen(index)}
         >
           {totalImages > 0 ? (
@@ -118,10 +114,12 @@ export default function Projects() {
   const [openProjectIndex, setOpenProjectIndex] = useState<number | null>(null);
   const [fullscreen, setFullscreen] = useState(false);
   const [activeSlide, setActiveSlide] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(10);
   const swiperRef = useRef<SwiperClass | null>(null);
 
   const project = openProjectIndex !== null ? projectsData[openProjectIndex] : null;
   const images = project?.images ?? [];
+  const hasMore = visibleCount < projectsData.length;
 
   useEffect(() => {
     if (openProjectIndex !== null) {
@@ -168,19 +166,36 @@ export default function Projects() {
         </div>
 
         {/* Case-study rows */}
-        <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} className="max-w-6xl mx-auto">
-          {projectsData.map((project, index) => (
+        <div className="max-w-6xl mx-auto">
+          {projectsData.slice(0, visibleCount).map((project, index) => (
             <ProjectRow
               key={index}
               project={project}
               index={index}
-              title={t(`projects.project${index + 1}.title`) as string}
-              description={t(`projects.project${index + 1}.description`) as string}
+              title={t(`projects.${project.slug}.title`) as string}
+              description={t(`projects.${project.slug}.description`) as string}
               readMore={t("projects.readMore") as string}
               onOpen={openProject}
             />
           ))}
-        </motion.div>
+        </div>
+
+        {/* Load more */}
+        {hasMore && (
+          <div className="flex justify-center mt-10 sm:mt-12">
+            <motion.button
+              type="button"
+              onClick={() => setVisibleCount((count) => Math.min(count + 5, projectsData.length))}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="px-6 py-3 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border border-gray-300 dark:border-gray-600 rounded-lg text-sm font-medium hover:border-blue-400 dark:hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              suppressHydrationWarning
+            >
+              {t("projects.showMore")}
+            </motion.button>
+          </div>
+        )}
       </div>
 
       {/* Project Detail Modal */}
@@ -311,11 +326,11 @@ export default function Projects() {
                 {/* Content */}
                 <div className="p-5 sm:p-8">
                   <h2 className="text-xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4" suppressHydrationWarning>
-                    {t(`projects.project${openProjectIndex + 1}.title`)}
+                    {t(`projects.${project.slug}.title`)}
                   </h2>
 
                   <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base leading-relaxed mb-6" suppressHydrationWarning>
-                    {t(`projects.project${openProjectIndex + 1}.description`)}
+                    {t(`projects.${project.slug}.description`)}
                   </p>
 
                   {/* Features */}
@@ -325,8 +340,8 @@ export default function Projects() {
                       {t("projects.features")}
                     </h3>
                     <ul className="space-y-2">
-                      {Array.isArray(t(`projects.project${openProjectIndex + 1}.features`)) &&
-                        (t(`projects.project${openProjectIndex + 1}.features`) as string[]).map((feature, idx) => (
+                      {Array.isArray(t(`projects.${project.slug}.features`)) &&
+                        (t(`projects.${project.slug}.features`) as string[]).map((feature, idx) => (
                           <li key={idx} className="flex items-start gap-3 text-gray-600 dark:text-gray-300 text-sm sm:text-base">
                             <span className="text-blue-600 dark:text-blue-500 mt-1">•</span>
                             <span suppressHydrationWarning>{feature}</span>
@@ -371,12 +386,12 @@ export default function Projects() {
 
       {/* Fullscreen Gallery */}
       <AnimatePresence>
-        {fullscreen && openProjectIndex !== null && (
+        {fullscreen && project && (
           <AlbumGallery
             images={images.map((img) => ({
               src: img.src,
               title: img.title,
-              description: t(`projects.project${openProjectIndex + 1}.description`) as string,
+              description: t(`projects.${project.slug}.description`) as string,
             }))}
             onClose={() => setFullscreen(false)}
           />
