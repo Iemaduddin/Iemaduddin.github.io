@@ -17,6 +17,7 @@ export const projectsData: Project[] = [
     title: "Intelligent Point of Sale & Business Analytics (NEXPOS)",
     description: "",
     technologies: ["Laravel","Python", "React Js", "Typescript", "Inertia Js", "Postgre SQL", "Tailwind CSS", "Nivo Charts" ],
+    repository: "https://github.com/Iemaduddin/nexpos",
     images: [
       {
         title: "Cover",
@@ -174,7 +175,7 @@ export const projectsData: Project[] = [
       {
         title: "Detail Transaksi Simpanan Deposito",
         description: "",
-        src: "/documentation/sistem-koperasi/deposito-koperasi-1.png",
+        src: "/documentation/sistem-koperasi/deposito-koperasi-2.png",
       },
       {
         title: "Reminder Bagi Hasil Simpanan Deposito",

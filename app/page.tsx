@@ -6,6 +6,7 @@ import About from "./components/About";
 import Education from "./components/Education";
 import ExperienceOrg from "./components/ExperienceOrg";
 import ExperienceWork from "./components/ExperienceWork";
+// import Certification from "./components/Certification";
 import Projects from "./components/Project/Projects";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
@@ -40,9 +41,13 @@ export default function HomePage() {
         <ExperienceOrg />
       </section>
 
+      {/* <section id="certificates" className="bg-gray-50 dark:bg-gray-900/50 py-16 md:py-20">
+        <div className="container mx-auto max-w-7xl px-4">
+          <Certification />
+        </div>
+      </section> */}
 
-
-      <section id="contact" className="bg-gray-50 dark:bg-gray-900/50 py-16 md:py-20">
+      <section id="contact" className="py-16 md:py-20">
         <div className="container mx-auto max-w-7xl px-4">
           <Contact />
         </div>

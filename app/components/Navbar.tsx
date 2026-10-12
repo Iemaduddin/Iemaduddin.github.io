@@ -21,6 +21,7 @@ export default function Navbar() {
     { name: t("nav.projects"), href: "#projects" },
     { name: t("nav.education"), href: "#education" },
     { name: t("nav.org"), href: "#org" },
+    // { name: t("nav.certificates"), href: "#certificates" },
     { name: t("nav.contact"), href: "#contact" },
   ];
 
@@ -87,7 +88,7 @@ export default function Navbar() {
 
               {/* Desktop Menu */}
               <div className="hidden md:flex items-center gap-4 lg:gap-6">
-                <div className="flex items-center gap-3 lg:gap-4 xl:gap-5">
+                <div className="flex items-center gap-2 lg:gap-4 xl:gap-5">
                   {navItems.map((item) => {
                     const isActive = activeSection === item.href.slice(1);
                     return (

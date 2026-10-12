@@ -15,12 +15,29 @@ interface GalleryImage {
   description?: string;
 }
 
-export const AlbumGallery = ({ images, onClose }: { images: GalleryImage[]; onClose: () => void }) => {
-  const [index, setIndex] = useState<number>(0);
+export const AlbumGallery = ({ images, onClose, initialIndex = 0 }: { images: GalleryImage[]; onClose: () => void; initialIndex?: number }) => {
+  const [index, setIndex] = useState<number>(initialIndex);
   const [zoom, setZoom] = useState(1);
   const [rotation, setRotation] = useState(0);
   const [flipX, setFlipX] = useState(false);
   const [flipY, setFlipY] = useState(false);
+
+  const resetTransform = () => {
+    setZoom(1);
+    setRotation(0);
+    setFlipX(false);
+    setFlipY(false);
+  };
+
+  const nextImage = () => {
+    setIndex((index + 1) % images.length);
+    resetTransform();
+  };
+
+  const prevImage = () => {
+    setIndex((index - 1 + images.length) % images.length);
+    resetTransform();
+  };
 
   React.useEffect(() => {
     // Disable scroll when gallery is open
@@ -36,24 +53,8 @@ export const AlbumGallery = ({ images, onClose }: { images: GalleryImage[]; onCl
       window.removeEventListener("keydown", handler);
       document.body.style.overflow = ""; // Re-enable scroll when gallery closes
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [index, onClose]);
-
-  const nextImage = () => {
-    setIndex((index + 1) % images.length);
-    resetTransform();
-  };
-
-  const prevImage = () => {
-    setIndex((index - 1 + images.length) % images.length);
-    resetTransform();
-  };
-
-  const resetTransform = () => {
-    setZoom(1);
-    setRotation(0);
-    setFlipX(false);
-    setFlipY(false);
-  };
 
   const modal = (
     <>
