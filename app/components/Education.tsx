@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { GraduationCap, University } from "lucide-react";
+import { LuGraduationCap as GraduationCap, LuUniversity as University } from "react-icons/lu";
 import { useLanguage } from "../contexts/LanguageContext";
 
 interface EducationItem {

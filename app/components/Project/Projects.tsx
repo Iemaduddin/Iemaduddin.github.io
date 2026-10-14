@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Code, ChevronLeft, ChevronRight, X, Images, CheckCircle2, Github, Maximize2 } from "lucide-react";
+import { LuCode as Code, LuChevronLeft as ChevronLeft, LuChevronRight as ChevronRight, LuX as X, LuImages as Images, LuCircleCheckBig as CheckCircle2, LuGithub as Github, LuMaximize2 as Maximize2 } from "react-icons/lu";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperClass } from "swiper";
 import { Navigation, Pagination } from "swiper/modules";

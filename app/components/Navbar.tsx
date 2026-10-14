@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ThemeContext } from "./Providers";
 import { useLanguage } from "../contexts/LanguageContext";
-import { Moon, Sun, Menu, X, Languages } from "lucide-react";
+import { LuMoon as Moon, LuSun as Sun, LuMenu as Menu, LuX as X, LuLanguages as Languages } from "react-icons/lu";
 import Image from "next/image";
 
 export default function Navbar() {
@@ -21,7 +21,7 @@ export default function Navbar() {
     { name: t("nav.projects"), href: "#projects" },
     { name: t("nav.education"), href: "#education" },
     { name: t("nav.org"), href: "#org" },
-    // { name: t("nav.certificates"), href: "#certificates" },
+    { name: t("nav.certificates"), href: "#certificates" },
     { name: t("nav.contact"), href: "#contact" },
   ];
 

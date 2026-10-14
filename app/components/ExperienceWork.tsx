@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { Calendar, MapPin, Building2 } from "lucide-react";
+import { LuCalendar as Calendar, LuMapPin as MapPin, LuBuilding2 as Building2 } from "react-icons/lu";
 import { useLanguage } from "../contexts/LanguageContext";
 
 interface WorkExperience {

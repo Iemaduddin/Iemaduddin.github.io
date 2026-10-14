@@ -1,12 +1,12 @@
 "use client";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { LuChevronLeft as ChevronLeft, LuChevronRight as ChevronRight, LuX as X } from "react-icons/lu";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Image from "next/image";
-import { ZoomIn, ZoomOut, RotateCcw, RotateCw, FlipHorizontal, FlipVertical } from "lucide-react";
+import { LuZoomIn as ZoomIn, LuZoomOut as ZoomOut, LuRotateCcw as RotateCcw, LuRotateCw as RotateCw, LuFlipHorizontal as FlipHorizontal, LuFlipVertical as FlipVertical } from "react-icons/lu";
 import { createPortal } from "react-dom";
 
 interface GalleryImage {

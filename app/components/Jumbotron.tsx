@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, ChevronDown, Download } from "lucide-react";
+import { LuGithub as Github, LuLinkedin as Linkedin, LuMail as Mail, LuChevronDown as ChevronDown, LuDownload as Download } from "react-icons/lu";
 import Image from "next/image";
 import { useLanguage } from "../contexts/LanguageContext";
 

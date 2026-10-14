@@ -11,7 +11,7 @@ interface ScrollToTopButtonProps {
 export default function ScrollToTopButton({ offset = 200 }: ScrollToTopButtonProps) {
   const [visible, setVisible] = useState(false);
   const [hovered, setHovered] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile] = useState(() => typeof window !== "undefined" && ("ontouchstart" in window || navigator.maxTouchPoints > 0));
 
   useEffect(() => {
     const handleScroll = () => setVisible(window.scrollY > offset);
@@ -19,9 +19,7 @@ export default function ScrollToTopButton({ offset = 200 }: ScrollToTopButtonPro
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [offset]);
-  useEffect(() => {
-    setIsMobile("ontouchstart" in window || navigator.maxTouchPoints > 0);
-  }, []);
+
   const handleClick = () => {
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReduced) {

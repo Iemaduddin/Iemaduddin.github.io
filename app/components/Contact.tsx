@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Mail, MapPin, Github, Linkedin, ChevronLeft, ChevronRight, Copy, Check } from "lucide-react";
+import { LuMail as Mail, LuMapPin as MapPin, LuGithub as Github, LuLinkedin as Linkedin, LuChevronLeft as ChevronLeft, LuChevronRight as ChevronRight, LuCopy as Copy, LuCheck as Check } from "react-icons/lu";
 import Image from "next/image";
 import { AlbumGallery } from "./Gallery";
 import { Swiper, SwiperSlide } from "swiper/react";
