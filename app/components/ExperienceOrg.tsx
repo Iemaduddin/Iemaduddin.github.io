@@ -3,6 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { LuCalendar as Calendar, LuMapPin as MapPin } from "react-icons/lu";
 import { useLanguage } from "../contexts/LanguageContext";
+import SectionHeading from "./SectionHeading";
 
 interface OrgExperience {
   title: string;
@@ -57,15 +58,7 @@ export default function ExperienceOrg() {
   return (
     <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} className="max-w-7xl mx-auto">
       {/* Header */}
-      <motion.div variants={itemVariants} className="text-center mb-12 sm:mb-16">
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4" suppressHydrationWarning>
-          {t("org.title")}
-        </h2>
-        <div className="w-24 h-1.5 bg-blue-600 dark:bg-blue-500 mx-auto rounded-full"></div>
-        <p className="mt-4 text-gray-600 dark:text-gray-400 text-sm sm:text-base max-w-2xl mx-auto px-4" suppressHydrationWarning>
-          {t("org.subtitle")}
-        </p>
-      </motion.div>
+      <SectionHeading title={t("org.title") as string} subtitle={t("org.subtitle") as string} />
 
       {/* Two columns separated by a vertical divider */}
       <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 items-stretch" suppressHydrationWarning>

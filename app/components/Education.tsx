@@ -3,6 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { LuGraduationCap as GraduationCap, LuUniversity as University } from "react-icons/lu";
 import { useLanguage } from "../contexts/LanguageContext";
+import SectionHeading from "./SectionHeading";
 
 interface EducationItem {
   degree: string;
@@ -54,15 +55,7 @@ export default function Education() {
   return (
     <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} className="max-w-7xl mx-auto">
       {/* Header */}
-      <motion.div variants={itemVariants} className="text-center mb-12 sm:mb-16">
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4" suppressHydrationWarning>
-          {t("education.title")}
-        </h2>
-        <div className="w-24 h-1.5 bg-blue-600 dark:bg-blue-500 mx-auto rounded-full"></div>
-        <p className="mt-4 text-gray-600 dark:text-gray-400 text-sm sm:text-base max-w-2xl mx-auto px-4" suppressHydrationWarning>
-          {t("education.subtitle")}
-        </p>
-      </motion.div>
+      <SectionHeading title={t("education.title") as string} subtitle={t("education.subtitle") as string} />
 
       {/* 2-column grid */}
       <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 items-stretch" suppressHydrationWarning>

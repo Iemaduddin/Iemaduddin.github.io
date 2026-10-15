@@ -11,10 +11,18 @@ import Projects from "./components/Project/Projects";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import BackToTop from "./components/BackToTop";
+import Preloader from "./components/Preloader";
+import SmoothScroll from "./components/SmoothScroll";
+import CustomCursor from "./components/CustomCursor";
+import ScrollProgressBar from "./components/ScrollProgressBar";
 
 export default function HomePage() {
   return (
     <main className="min-h-screen overflow-x-hidden">
+      <Preloader />
+      <SmoothScroll />
+      <CustomCursor />
+      <ScrollProgressBar />
       <Navbar />
       <Jumbotron />
 

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { LuGithub as Github, LuLinkedin as Linkedin, LuMail as Mail, LuChevronDown as ChevronDown, LuDownload as Download } from "react-icons/lu";
 import Image from "next/image";
 import { useLanguage } from "../contexts/LanguageContext";
+import { scrollToSection } from "../lib/lenis";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -154,10 +155,7 @@ export default function Jumbotron() {
           type="button"
           aria-label={t("jumbotron.scrollDown") as string}
           onClick={() => {
-            const aboutSection = document.querySelector("#about");
-            if (aboutSection) {
-              aboutSection.scrollIntoView({ behavior: "smooth" });
-            }
+            scrollToSection("#about", 80);
           }}
           className="pointer-events-auto flex flex-col items-center gap-1 cursor-pointer group text-gray-500 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors whitespace-nowrap"
           suppressHydrationWarning

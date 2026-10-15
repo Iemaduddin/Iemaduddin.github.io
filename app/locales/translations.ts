@@ -1,5 +1,8 @@
 export const translations = {
   en: {
+    // Preloader
+    "preloader.loading": "Loading",
+
     // Navbar
     "nav.home": "Home",
     "nav.about": "About",
@@ -9,9 +12,11 @@ export const translations = {
     "nav.certificates": "Certificates",
     "nav.projects": "Projects",
     "nav.contact": "Contact",
+    "nav.menu": "Menu",
 
     // Jumbotron
     "jumbotron.welcome": "Welcome to my Portfolio",
+    "jumbotron.available": "Available for freelance",
     "jumbotron.greeting": "Hi, I'm",
     "jumbotron.description": "I build web systems that turn complex data and workflows into simple, useful products.",
     "jumbotron.getInTouch": "Get In Touch",
@@ -99,7 +104,7 @@ export const translations = {
     "certificates.item3.date": "January 2025",
     "certificates.item3.credential": "2025/1211921514/999/1/95131",
     "certificates.item3.category": "certification",
-    "certificates.item4.name": "Certificate of Completion in Full Stack Developer Internship Program",
+    "certificates.item4.name": "Certificate of Completion in Full Stack Web Developer Internship Program",
     "certificates.item4.issuer": "PT. Surabaya Autocomp Indonesia",
     "certificates.item4.date": "July 2024",
     "certificates.item4.credential": "327/HR/EXT/SAI/VII/2024",
@@ -349,6 +354,9 @@ export const translations = {
     "footer.connect": "Connect with me",
   },
   id: {
+    // Preloader
+    "preloader.loading": "Memuat",
+
     // Navbar
     "nav.home": "Beranda",
     "nav.about": "Tentang",
@@ -358,9 +366,11 @@ export const translations = {
     "nav.certificates": "Sertifikat",
     "nav.projects": "Proyek",
     "nav.contact": "Kontak",
+    "nav.menu": "Menu",
 
     // Jumbotron
     "jumbotron.welcome": "Selamat Datang di Portfolio Saya",
+    "jumbotron.available": "Terbuka untuk freelance",
     "jumbotron.greeting": "Hai, Saya",
     "jumbotron.description": "Saya membangun web system yang mengubah data dan alur kerja kompleks menjadi produk yang sederhana dan berguna.",
     "jumbotron.getInTouch": "Hubungi Saya",
@@ -448,7 +458,7 @@ export const translations = {
     "certificates.item3.date": "Januari 2025",
     "certificates.item3.credential": "2025/1211921514/999/1/95131",
     "certificates.item3.category": "certification",
-    "certificates.item4.name": "Sertifikat Penyelesaian Program Magang Full Stack Developer",
+    "certificates.item4.name": "Sertifikat Penyelesaian Program Magang Full Stack Web Developer",
     "certificates.item4.issuer": "PT. Surabaya Autocomp Indonesia",
     "certificates.item4.date": "Juli 2024",
     "certificates.item4.credential": "327/HR/EXT/SAI/VII/2024",
@@ -702,6 +712,9 @@ export const translations = {
     "footer.quickLinkItem2": "Proyek",
     "footer.quickLinkItem3": "Kontak",
     "footer.connect": "Terhubung dengan Saya",
+    "footer.cta.title": "Punya ide? Mari bicara.",
+    "footer.cta.subtitle": "Saya terbuka untuk proyek freelance, kolaborasi, atau sekadar ngobrol santai soal teknologi.",
+    "footer.cta.button": "Hubungi Saya",
   },
 };
 

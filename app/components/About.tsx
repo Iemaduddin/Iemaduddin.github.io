@@ -3,6 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { SiNextdotjs, SiLaravel, SiPhp, SiNodedotjs, SiTypescript, SiReact, SiMysql, SiSqlite, SiPostgresql, SiExpress, SiPython, SiAdonisjs } from "react-icons/si";
 import { useLanguage } from "../contexts/LanguageContext";
+import SectionHeading from "./SectionHeading";
 
 interface Technology {
   name: string;
@@ -53,12 +54,7 @@ export default function About() {
   return (
     <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} className="max-w-7xl mx-auto">
       {/* Header */}
-      <motion.div variants={itemVariants} className="text-center mb-12 sm:mb-16">
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4" suppressHydrationWarning>
-          {t("about.title")}
-        </h2>
-        <div className="w-24 h-1 bg-blue-600 dark:bg-blue-500 mx-auto rounded-full"></div>
-      </motion.div>
+      <SectionHeading title={t("about.title") as string} />
 
       {/* Description */}
       <motion.div variants={itemVariants} className="max-w-5xl mx-auto mb-12">
@@ -85,28 +81,23 @@ export default function About() {
         </div>
       </motion.div>
 
-      {/* Tech Stack — tanpa kartu wrapper */}
+      {/* Tech Stack — marquee */}
       <motion.div variants={itemVariants} className="max-w-5xl mx-auto">
-        <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-6" suppressHydrationWarning>
+        <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-6 text-center" suppressHydrationWarning>
           {t("about.technologiesTitle")}
         </h3>
-        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4" suppressHydrationWarning>
-          {technologies.map((tech, index) => {
-            const IconComponent = tech.icon;
-            return (
-              <motion.div
-                key={tech.name}
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.04, duration: 0.35, ease: "easeOut" }}
-                className="group flex flex-col items-center gap-2 p-4 rounded-xl border border-gray-200 dark:border-gray-700/60 bg-white dark:bg-gray-800/40 hover:border-blue-300 dark:hover:border-blue-600/60 hover:-translate-y-1 hover:shadow-md transition-all duration-200"
-              >
-                <IconComponent size={30} className="text-gray-600 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" />
-                <span className="text-xs text-gray-600 dark:text-gray-400 text-center font-medium leading-tight">{tech.name}</span>
-              </motion.div>
-            );
-          })}
+        <div className="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]" suppressHydrationWarning>
+          <div className="flex w-max animate-marquee gap-4 pr-4">
+            {[...technologies, ...technologies].map((tech, index) => {
+              const IconComponent = tech.icon;
+              return (
+                <div key={`${tech.name}-${index}`} aria-hidden={index >= technologies.length} className="group flex items-center gap-2.5 px-4 py-2.5 rounded-full border border-gray-200 dark:border-gray-700/60 bg-white dark:bg-gray-800/40 hover:border-blue-300 dark:hover:border-blue-600/60 hover:-translate-y-0.5 transition-all duration-200 shrink-0">
+                  <IconComponent size={22} className="text-gray-600 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" />
+                  <span className="text-sm text-gray-700 dark:text-gray-300 font-medium whitespace-nowrap">{tech.name}</span>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </motion.div>
     </motion.div>

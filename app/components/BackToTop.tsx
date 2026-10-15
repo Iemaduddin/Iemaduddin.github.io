@@ -1,17 +1,31 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useSyncExternalStore } from "react";
 import { RiArrowUpLine } from "react-icons/ri";
 import { motion, AnimatePresence } from "framer-motion";
+import { scrollToTop } from "../lib/lenis";
 
 interface ScrollToTopButtonProps {
   offset?: number;
 }
 
+function subscribeMobile(listener: () => void) {
+  window.addEventListener("resize", listener);
+  return () => window.removeEventListener("resize", listener);
+}
+
+function getMobileSnapshot() {
+  return "ontouchstart" in window || navigator.maxTouchPoints > 0;
+}
+
+function getMobileServerSnapshot() {
+  return false;
+}
+
 export default function ScrollToTopButton({ offset = 200 }: ScrollToTopButtonProps) {
   const [visible, setVisible] = useState(false);
   const [hovered, setHovered] = useState(false);
-  const [isMobile] = useState(() => typeof window !== "undefined" && ("ontouchstart" in window || navigator.maxTouchPoints > 0));
+  const isMobile = useSyncExternalStore(subscribeMobile, getMobileSnapshot, getMobileServerSnapshot);
 
   useEffect(() => {
     const handleScroll = () => setVisible(window.scrollY > offset);
@@ -22,11 +36,7 @@ export default function ScrollToTopButton({ offset = 200 }: ScrollToTopButtonPro
 
   const handleClick = () => {
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReduced) {
-      window.scrollTo(0, 0);
-    } else {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
+    scrollToTop(prefersReduced);
     if (isMobile) setHovered(false);
   };
 

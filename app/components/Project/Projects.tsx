@@ -10,8 +10,10 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Image from "next/image";
 import { AlbumGallery } from "../Gallery";
+import TiltCard from "../TiltCard";
 import { Project, projectsData } from "./Project-Data";
 import { useLanguage } from "../../contexts/LanguageContext";
+import SectionHeading from "../SectionHeading";
 
 function ProjectRow({
   project,
@@ -41,12 +43,21 @@ function ProjectRow({
     >
       {/* Image — first in DOM so mobile shows image on top */}
       <div className={isEven ? "lg:order-2" : "lg:order-1"}>
-        <div
-          className="group relative w-full overflow-hidden rounded-2xl bg-gray-900 shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer aspect-video"
-          onClick={() => onOpen(index)}
-        >
+        <TiltCard max={5} className="w-full">
+          <div
+            className="group relative w-full overflow-hidden rounded-2xl bg-gray-900 shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer aspect-video"
+            onClick={() => onOpen(index)}
+          >
           {totalImages > 0 ? (
-            <Image src={project.images![0].src} alt={project.images![0].title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+            <>
+              {/* Bottom image — revealed on hover when a second image exists */}
+              {totalImages > 1 && (
+                <Image src={project.images![1].src} alt={project.images![1].title} fill className="object-cover" />
+              )}
+              <div className={`absolute inset-0 transition-transform duration-500 ease-in-out group-hover:-translate-y-full ${totalImages > 1 ? "" : "group-hover:scale-105"}`}>
+                <Image src={project.images![0].src} alt={project.images![0].title} fill className="object-cover" />
+              </div>
+            </>
           ) : (
             <div className="w-full h-full flex items-center justify-center">
               <Code className="text-gray-600" size={64} />
@@ -61,7 +72,8 @@ function ProjectRow({
           )}
 
           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
-        </div>
+          </div>
+        </TiltCard>
       </div>
 
       {/* Content */}
@@ -158,12 +170,7 @@ export default function Projects() {
     <>
       <div className="w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 mx-auto relative">
         {/* Header */}
-        <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4" suppressHydrationWarning>
-            {t("projects.title")}
-          </h2>
-          <div className="w-24 h-1 bg-blue-600 dark:bg-blue-500 mx-auto rounded-full"></div>
-        </div>
+        <SectionHeading title={t("projects.title") as string} />
 
         {/* Case-study rows */}
         <div className="max-w-6xl mx-auto">

@@ -1,5 +1,5 @@
 "use client";
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useCallback, useContext, useEffect, useSyncExternalStore } from "react";
 import { translations, TranslationKey } from "../locales/translations";
 
 type Language = "en" | "id";
@@ -12,27 +12,52 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
+let currentLanguage: Language = "en";
+const listeners = new Set<() => void>();
+
+function emitChange() {
+  listeners.forEach((listener) => listener());
+}
+
+function subscribeLanguage(listener: () => void) {
+  listeners.add(listener);
+  return () => {
+    listeners.delete(listener);
+  };
+}
+
+function getLanguageSnapshot(): Language {
+  return currentLanguage;
+}
+
+function getLanguageServerSnapshot(): Language {
+  return "en";
+}
+
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  // Use lazy initialization to get saved language
-  const [language, setLanguageState] = useState<Language>(() => {
-    if (typeof window !== "undefined") {
-      const savedLang = localStorage.getItem("language") as Language;
-      if (savedLang && (savedLang === "en" || savedLang === "id")) {
-        return savedLang;
-      }
+  const language = useSyncExternalStore(subscribeLanguage, getLanguageSnapshot, getLanguageServerSnapshot);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("language") as Language | null;
+    if (saved && (saved === "en" || saved === "id") && saved !== currentLanguage) {
+      currentLanguage = saved;
+      emitChange();
     }
-    return "en";
-  });
+  }, []);
 
-  const setLanguage = (lang: Language) => {
-    setLanguageState(lang);
+  const setLanguage = useCallback((lang: Language) => {
+    currentLanguage = lang;
     localStorage.setItem("language", lang);
-  };
+    emitChange();
+  }, []);
 
-  const t = (key: TranslationKey | string): string | string[] => {
-    const value = translations[language][key as TranslationKey];
-    return value || key;
-  };
+  const t = useCallback(
+    (key: TranslationKey | string): string | string[] => {
+      const value = translations[language][key as TranslationKey];
+      return value || key;
+    },
+    [language],
+  );
 
   return <LanguageContext.Provider value={{ language, setLanguage, t }}>{children}</LanguageContext.Provider>;
 };

@@ -5,7 +5,9 @@ import { LuAward as Award, LuCalendar as Calendar, LuBuilding2 as Building2, LuH
 import type { IconType } from "react-icons";
 import Image from "next/image";
 import { AlbumGallery } from "./Gallery";
+import TiltCard from "./TiltCard";
 import { useLanguage } from "../contexts/LanguageContext";
+import SectionHeading from "./SectionHeading";
 
 interface CertificateItem {
   name: string;
@@ -92,15 +94,7 @@ export default function Certification() {
     <>
       <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} className="max-w-7xl mx-auto">
         {/* Header */}
-        <motion.div variants={itemVariants} className="text-center mb-8 sm:mb-10">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4" suppressHydrationWarning>
-            {t("certificates.title")}
-          </h2>
-          <div className="w-24 h-1.5 bg-blue-600 dark:bg-blue-500 mx-auto rounded-full"></div>
-          <p className="mt-4 text-gray-600 dark:text-gray-400 text-sm sm:text-base max-w-2xl mx-auto px-4" suppressHydrationWarning>
-            {t("certificates.subtitle")}
-          </p>
-        </motion.div>
+        <SectionHeading title={t("certificates.title") as string} subtitle={t("certificates.subtitle") as string} />
 
         {/* Filter chips */}
         <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-2 sm:gap-2.5 mb-10 sm:mb-12" suppressHydrationWarning>
@@ -142,9 +136,11 @@ export default function Certification() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.35, ease: "easeOut" }}
-                  className="group flex flex-col rounded-2xl border border-gray-200 dark:border-gray-700/80 bg-white dark:bg-gray-800/70 p-6 hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-600/60 transition-all duration-300"
+                  className="h-full"
                   suppressHydrationWarning
                 >
+                  <TiltCard max={5} className="h-full">
+                  <div className="group flex flex-col h-full rounded-2xl border border-gray-200 dark:border-gray-700/80 bg-white dark:bg-gray-800/70 p-6 hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-600/60 transition-all duration-300">
                   {/* Certificate image — click to preview */}
                   <button
                     type="button"
@@ -206,6 +202,8 @@ export default function Certification() {
                       {cert.credential}
                     </p>
                   </div>
+                  </div>
+                  </TiltCard>
                 </motion.article>
               );
             })}

@@ -24,8 +24,8 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-gray-900 dark:bg-black text-gray-300 py-12">
-      <div className="container mx-auto max-w-7xl px-4">
+    <footer className="bg-gray-900 dark:bg-black text-gray-300">
+      <div className="container mx-auto max-w-7xl px-4 py-12">
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           <div>
             <h3 className="text-xl font-bold text-white mb-2">Iemaduddin</h3>

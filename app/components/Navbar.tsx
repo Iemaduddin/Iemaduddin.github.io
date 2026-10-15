@@ -5,6 +5,7 @@ import { ThemeContext } from "./Providers";
 import { useLanguage } from "../contexts/LanguageContext";
 import { LuMoon as Moon, LuSun as Sun, LuMenu as Menu, LuX as X, LuLanguages as Languages } from "react-icons/lu";
 import Image from "next/image";
+import { scrollToSection as lenisScrollToSection } from "../lib/lenis";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -52,22 +53,16 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = isMobileMenuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileMenuOpen]);
+
   const scrollToSection = (href: string) => {
     setIsMobileMenuOpen(false);
-
-    setTimeout(() => {
-      const element = document.querySelector(href);
-      if (element) {
-        const navbarHeight = 80;
-        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-        const offsetPosition = elementPosition - navbarHeight;
-
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth",
-        });
-      }
-    }, 100);
+    setTimeout(() => lenisScrollToSection(href, 80), 100);
   };
 
   return (
@@ -144,32 +139,75 @@ export default function Navbar() {
                 </motion.button>
               </div>
             </div>
-
-            {/* Mobile Menu */}
-            <AnimatePresence>
-              {isMobileMenuOpen && (
-                <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="md:hidden overflow-hidden">
-                  <div className="py-4 space-y-2">
-                    {navItems.map((item) => {
-                      const isActive = activeSection === item.href.slice(1);
-                      return (
-                        <motion.button
-                          key={item.name as string}
-                          whileTap={{ scale: 0.95 }}
-                          onClick={() => scrollToSection(item.href)}
-                          className={`block w-full text-left px-4 py-2 rounded-lg transition-colors text-sm font-medium ${isActive ? "bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400" : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"}`}
-                        >
-                          {item.name}
-                        </motion.button>
-                      );
-                    })}
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
           </div>
         </motion.nav>
       )}
+
+      {/* Offcanvas Mobile Menu — di luar motion.nav agar fixed positioning bebas */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <>
+            <motion.div
+              key="menu-backdrop"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="md:hidden fixed inset-0 z-[55] bg-black/50 backdrop-blur-sm"
+            />
+            <motion.div
+              key="menu-panel"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", stiffness: 300, damping: 32 }}
+              className="md:hidden fixed top-0 right-0 bottom-0 z-[56] w-72 max-w-[85vw] bg-white dark:bg-gray-900 border-l border-gray-200 dark:border-gray-800 shadow-2xl flex flex-col"
+            >
+              <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-800">
+                <span className="text-sm font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400" suppressHydrationWarning>
+                  {t("nav.menu")}
+                </span>
+                <button onClick={() => setIsMobileMenuOpen(false)} className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300" aria-label="Close menu">
+                  <X size={20} />
+                </button>
+              </div>
+              <nav className="flex-1 overflow-y-auto py-4">
+                {navItems.map((item, index) => {
+                  const isActive = activeSection === item.href.slice(1);
+                  return (
+                    <motion.button
+                      key={item.name as string}
+                      initial={{ opacity: 0, x: 24 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.08 + index * 0.05, duration: 0.3 }}
+                      onClick={() => scrollToSection(item.href)}
+                      className={`flex items-center gap-3 w-full text-left px-5 py-3.5 text-base font-medium transition-colors ${
+                        isActive ? "text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20" : "text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
+                      }`}
+                    >
+                      <span className="text-xs font-mono text-blue-600/60 dark:text-blue-400/60">{String(index + 1).padStart(2, "0")}</span>
+                      <span suppressHydrationWarning>{item.name}</span>
+                    </motion.button>
+                  );
+                })}
+              </nav>
+              <div className="p-4 border-t border-gray-200 dark:border-gray-800 flex items-center gap-2">
+                <button
+                  onClick={() => setLanguage(language === "en" ? "id" : "en")}
+                  className="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm font-semibold"
+                >
+                  <Languages size={16} />
+                  {language.toUpperCase()}
+                </button>
+                <button onClick={toggleTheme} className="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm font-semibold">
+                  {theme === "light" ? <Moon size={16} /> : <Sun size={16} />}
+                  {theme === "light" ? "Dark" : "Light"}
+                </button>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </>
   );
 }
