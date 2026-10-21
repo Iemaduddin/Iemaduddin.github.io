@@ -45,17 +45,17 @@ function ProjectRow({
       <div className={isEven ? "lg:order-2" : "lg:order-1"}>
         <TiltCard max={5} className="w-full">
           <div
-            className="group relative w-full overflow-hidden rounded-2xl bg-gray-900 shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer aspect-video"
+            className="group relative w-full overflow-hidden rounded-2xl bg-gray-100 dark:bg-gray-900 shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer aspect-video"
             onClick={() => onOpen(index)}
           >
           {totalImages > 0 ? (
             <>
               {/* Bottom image — revealed on hover when a second image exists */}
               {totalImages > 1 && (
-                <Image src={project.images![1].src} alt={project.images![1].title} fill className="object-cover" />
+                <Image src={project.images![1].src} alt={project.images![1].title} fill className="object-contain" />
               )}
               <div className={`absolute inset-0 transition-transform duration-500 ease-in-out group-hover:-translate-y-full ${totalImages > 1 ? "" : "group-hover:scale-105"}`}>
-                <Image src={project.images![0].src} alt={project.images![0].title} fill className="object-cover" />
+                <Image src={project.images![0].src} alt={project.images![0].title} fill className="object-contain" />
               </div>
             </>
           ) : (
