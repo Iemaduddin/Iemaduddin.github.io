@@ -13,6 +13,174 @@ export interface Project {
 
 export const projectsData: Project[] = [
   {
+    slug: "hris-mobile-application",
+    title: "HRIS mobile Application",
+    description: "",
+    technologies: ["React Native", "Typescript", "Postgre SQL", "Expo"],
+    repository: "https://github.com/Iemaduddin/mobile-hris",
+    images: [
+      {
+        title: "Cover",
+        description: "",
+        src: "/documentation/hris/mobile-hris.webp",
+      },
+      {
+        title: "Login",
+        description: "",
+        src: "/documentation/hris/mobile-login.webp",
+      },
+      {
+        title: "Beranda",
+        description: "",
+        src: "/documentation/hris/mobile-beranda.webp",
+      },
+      {
+        title: "Jadwal Kerja",
+        description: "",
+        src: "/documentation/hris/mobile-jadwal.webp",
+      },
+      {
+        title: "Kalender",
+        description: "",
+        src: "/documentation/hris/mobile-kalender.webp",
+      },
+      {
+        title: "Presensi",
+        description: "",
+        src: "/documentation/hris/mobile-presensi.webp",
+      },
+      {
+        title: "Koreksi Presensi",
+        description: "",
+        src: "/documentation/hris/mobile-koreksi-presensi.webp",
+      },
+      {
+        title: "Pengajuan Cuti/Izin/Sakit/Lembur/Dinas/WFH",
+        description: "",
+        src: "/documentation/hris/mobile-pengajuan.webp",
+      },
+      {
+        title: "Approval Pengajuan",
+        description: "",
+        src: "/documentation/hris/mobile-approval.webp",
+      },
+      {
+        title: "Slip Gaji",
+        description: "",
+        src: "/documentation/hris/mobile-slip-gaji.webp",
+      },
+      {
+        title: "Tukar Shift",
+        description: "",
+        src: "/documentation/hris/mobile-tukar-shift.webp",
+      },
+      {
+        title: "Pengumuman",
+        description: "",
+        src: "/documentation/hris/mobile-pengumuman.webp",
+      },
+      {
+        title: "Profil",
+        description: "",
+        src: "/documentation/hris/mobile-profil.webp",
+      },
+      {
+        title: "Popup Notifikasi",
+        description: "",
+        src: "/documentation/hris/mobile-notifikasi.webp",
+      },
+      {
+        title: "Halaman List Notifikasi",
+        description: "",
+        src: "/documentation/hris/mobile-notifikasi-2.webp",
+      },
+      {
+        title: "Tim",
+        description: "",
+        src: "/documentation/hris/mobile-tim.webp",
+      },
+      {
+        title: "Menu Lainnya",
+        description: "",
+        src: "/documentation/hris/mobile-menu-lainnya.webp",
+      },
+      {
+        title: "Pengaturan",
+        description: "",
+        src: "/documentation/hris/mobile-pengaturan.webp",
+      },
+    ],
+  },
+  {
+    slug: "hris-web-application",
+    title: "HRIS Web Application",
+    description: "",
+    technologies: ["Next Js", "Typescript", "Postgre SQL", "Tailwind CSS"],
+    repository: "https://github.com/Iemaduddin/hris",
+    images: [
+      {
+        title: "Cover",
+        description: "",
+        src: "/documentation/hris/hris-cover.webp",
+      },
+      {
+        title: "Dashboard",
+        description: "",
+        src: "/documentation/hris/web-dashboard.webp",
+      },
+      {
+        title: "Data Karyawan",
+        description: "",
+        src: "/documentation/hris/web-data-karyawan.webp",
+      },
+      {
+        title: "Presensi Karyawan",
+        description: "",
+        src: "/documentation/hris/web-presensi.webp",
+      },
+      {
+        title: "Koreksi Presensi",
+        description: "",
+        src: "/documentation/hris/web-koreksi-presensi.webp",
+      },
+      {
+        title: "Rekapan Presensi",
+        description: "",
+        src: "/documentation/hris/web-rekapan-presensi.webp",
+      },
+      {
+        title: "Payroll",
+        description: "",
+        src: "/documentation/hris/web-payrol.webp",
+      },
+      {
+        title: "Slip Gaji",
+        description: "",
+        src: "/documentation/hris/web-slip-gaji.webp",
+      },
+      {
+        title: "Pengajuan Cuti/Izin/Sakit/Lembur/Dinas/WFH",
+        description: "",
+        src: "/documentation/hris/web-pengajuan.webp",
+      },
+      {
+        title: "Approval Pengajuan",
+        description: "",
+        src: "/documentation/hris/web-approval.webp",
+      },
+      {
+        title: "Struktur Organisasi",
+        description: "",
+        src: "/documentation/hris/web-struktur-organisasi.webp",
+      },
+      {
+        title: "Update Data Karyawan",
+        description: "",
+        src: "/documentation/hris/web-update-data.webp",
+      },
+    ],
+  },
+  {
     slug: "intelligent-point-of-sale-and-business-analytics",
     title: "Intelligent Point of Sale & Business Analytics (NEXPOS)",
     description: "",

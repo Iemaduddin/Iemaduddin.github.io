@@ -53,6 +53,8 @@ const CATEGORY_ORDER = ["certification", "copyright", "award", "organization"];
 const certificateImages: { src: string; orientation: "landscape" | "portrait" }[] = [
   { src: "/documentation/certificates/seritifikat-kompetensi-computer-software-programming.webp", orientation: "portrait" },
   { src: "/documentation/certificates/hak-cipta-simeva.webp", orientation: "portrait" },
+  { src: "/documentation/certificates/sertifikat-data-science-challenge.webp", orientation: "landscape" },
+  { src: "/documentation/certificates/sertifikat-python-funcamental-for-data-science.webp", orientation: "landscape" },
   { src: "/documentation/certificates/magang-lasbon.webp", orientation: "landscape" },
   { src: "/documentation/certificates/magang-sai.webp", orientation: "portrait" },
   { src: "/documentation/certificates/sertifikat-ketua-umum.webp", orientation: "landscape" },
