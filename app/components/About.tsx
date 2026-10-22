@@ -14,6 +14,7 @@ const technologies: Technology[] = [
   { name: "Laravel", icon: SiLaravel },
   { name: "Next.js", icon: SiNextdotjs },
   { name: "Adonis.js", icon: SiAdonisjs },
+  { name: "React Native", icon: SiReact },
   { name: "PHP", icon: SiPhp },
   { name: "Node.js", icon: SiNodedotjs },
   { name: "Express.js", icon: SiExpress },
